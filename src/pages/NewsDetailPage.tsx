@@ -1,4 +1,5 @@
 import { ArrowLeft, Calendar, Share2, Tag } from "lucide-react";
+import { useCallback, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
 import rehypeRaw from "rehype-raw";
@@ -8,6 +9,7 @@ import { newsData } from "../data/newsData";
 
 const NewsDetailPage = () => {
 	const { id } = useParams<{ id: string }>();
+	const [copied, setCopied] = useState(false);
 	const newsId = parseInt(id || "0", 10);
 
 	const news = newsData.find((item) => item.id === newsId);
@@ -36,6 +38,18 @@ const NewsDetailPage = () => {
 		? newsData.filter((item) => news.relatedArticles?.includes(item.id))
 		: [];
 
+	const handleCopyUrl = useCallback(async () => {
+		const url = window.location.href;
+
+		try {
+			await navigator.clipboard.writeText(url);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 2000);
+		} catch {
+			alert(`コピーできませんでした…\n${url}`);
+		}
+	}, []);
+
 	return (
 		<div className="bg-gray-50 py-12">
 			<div className="max-w-4xl mx-auto px-4">
@@ -56,11 +70,7 @@ const NewsDetailPage = () => {
 
 				{/* Article Header */}
 				<div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-					<img
-						src={news.image}
-						alt={news.title}
-						className="w-full h-80 object-cover"
-					/>
+					<img src={news.image} alt={news.title} className="aspect-[16/9]" />
 					<div className="p-6">
 						<div className="flex items-center mb-4">
 							<span className="bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded-full">
@@ -78,10 +88,19 @@ const NewsDetailPage = () => {
 
 						{/* Social Share */}
 						<div className="flex items-center space-x-4 mb-6">
-							<button className="flex items-center text-gray-500 hover:text-blue-600">
+							<button
+								onClick={handleCopyUrl}
+								className="flex items-center text-gray-500 hover:text-blue-600"
+							>
 								<Share2 className="w-5 h-5 mr-1" />
-								<span className="text-sm">シェアする</span>
+								<span className="text-sm">URL をコピー</span>
 							</button>
+
+							{copied && (
+								<span className="text-xs text-green-600 transition-opacity duration-300">
+									コピーしました！
+								</span>
+							)}
 						</div>
 					</div>
 				</div>
