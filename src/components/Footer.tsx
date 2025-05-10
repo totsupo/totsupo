@@ -1,13 +1,16 @@
-import {
-	Coffee,
-	Facebook,
-	Instagram,
-	Mail,
-	MapPin,
-	Phone,
-	Twitter,
-} from "lucide-react";
+import { Coffee, Mail, createLucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
+
+const XIcon = createLucideIcon("X", [
+	[
+		"path",
+		{
+			d: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z",
+			stroke: "none",
+			fill: "currentColor",
+		},
+	],
+]);
 
 const Footer = () => {
 	return (
@@ -25,22 +28,10 @@ const Footer = () => {
 						</p>
 						<div className="flex space-x-4 mt-6">
 							<a
-								href="#"
+								href="https://x.com/totsuka_portal"
 								className="text-gray-300 hover:text-white transition-colors"
 							>
-								<Facebook className="h-5 w-5" />
-							</a>
-							<a
-								href="#"
-								className="text-gray-300 hover:text-white transition-colors"
-							>
-								<Twitter className="h-5 w-5" />
-							</a>
-							<a
-								href="#"
-								className="text-gray-300 hover:text-white transition-colors"
-							>
-								<Instagram className="h-5 w-5" />
+								<XIcon className="h-5 w-5" />
 							</a>
 						</div>
 					</div>
@@ -97,26 +88,10 @@ const Footer = () => {
 						</h3>
 						<address className="not-italic">
 							<div className="flex items-start mb-3">
-								<Phone className="h-5 w-5 mr-3 text-blue-400 mt-0.5" />
-								<div>
-									<p className="text-gray-300">045-XXX-XXXX</p>
-									<p className="text-sm text-gray-400">平日 9:00〜18:00</p>
-								</div>
-							</div>
-							<div className="flex items-start mb-3">
 								<Mail className="h-5 w-5 mr-3 text-blue-400 mt-0.5" />
 								<div>
-									<p className="text-gray-300">info@totsuka-portal.jp</p>
+									<p className="text-gray-300">totsuka.portal@gmail.com</p>
 									<p className="text-sm text-gray-400">24時間受付</p>
-								</div>
-							</div>
-							<div className="flex items-start">
-								<MapPin className="h-5 w-5 mr-3 text-blue-400 mt-0.5" />
-								<div>
-									<p className="text-gray-300">横浜市戸塚区戸塚町XX-XX</p>
-									<p className="text-sm text-gray-400">
-										JR・市営地下鉄「戸塚駅」から徒歩5分
-									</p>
 								</div>
 							</div>
 						</address>
