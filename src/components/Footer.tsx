@@ -24,7 +24,9 @@ const Footer = () => {
 							<span className="ml-2 text-xl font-bold">戸塚ぽーたる</span>
 						</div>
 						<p className="text-gray-300 mb-4">
-							横浜市戸塚区の魅力を発信するローカルメディア。地域の最新ニュース、イベント情報、おすすめスポットなどをお届けします。
+							横浜市戸塚区の魅力を発信するローカルメディア。
+							<br />
+							地域の最新ニュースなど、戸塚区の魅力を余すことなくお伝えします。
 						</p>
 						<div className="flex space-x-4 mt-6">
 							<a
@@ -53,24 +55,6 @@ const Footer = () => {
 								className="text-gray-300 hover:text-white py-1 transition-colors"
 							>
 								ニュース
-							</Link>
-							<Link
-								to="/events"
-								className="text-gray-300 hover:text-white py-1 transition-colors"
-							>
-								イベント
-							</Link>
-							<Link
-								to="/spots"
-								className="text-gray-300 hover:text-white py-1 transition-colors"
-							>
-								スポット
-							</Link>
-							<Link
-								to="/food"
-								className="text-gray-300 hover:text-white py-1 transition-colors"
-							>
-								グルメ
 							</Link>
 							<Link
 								to="/contact"

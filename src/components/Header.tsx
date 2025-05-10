@@ -44,24 +44,6 @@ const Header = () => {
 							ニュース
 						</Link>
 						<Link
-							to="/events"
-							className="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium"
-						>
-							イベント
-						</Link>
-						<Link
-							to="/spots"
-							className="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium"
-						>
-							スポット
-						</Link>
-						<Link
-							to="/food"
-							className="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium"
-						>
-							グルメ
-						</Link>
-						<Link
 							to="/contact"
 							className="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium"
 						>
@@ -102,24 +84,6 @@ const Header = () => {
 							className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
 						>
 							ニュース
-						</Link>
-						<Link
-							to="/events"
-							className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
-						>
-							イベント
-						</Link>
-						<Link
-							to="/spots"
-							className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
-						>
-							スポット
-						</Link>
-						<Link
-							to="/food"
-							className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
-						>
-							グルメ
 						</Link>
 						<Link
 							to="/contact"
