@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar } from 'lucide-react';
+import {Calendar, User} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface NewsProps {
@@ -10,6 +10,7 @@ interface NewsProps {
     date: string;
     image: string;
     category: string;
+    author?: string;
   };
 }
 
@@ -33,6 +34,13 @@ const NewsCard: React.FC<NewsProps> = ({ news }) => {
           <div className="flex items-center text-gray-500 text-sm">
             <Calendar className="w-4 h-4 mr-1" />
             <span>{news.date}</span>
+
+            {news.author && (
+              <div className="flex items-center text-gray-500 text-sm ml-4">
+                <User className="w-4 h-4 mr-1" />
+                <span>{news.author}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, Share2, Tag } from "lucide-react";
+import {ArrowLeft, Calendar, Share2, Tag, User} from "lucide-react";
 import { useCallback, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
@@ -80,6 +80,12 @@ const NewsDetailPage = () => {
 								<Calendar className="w-4 h-4 mr-1" />
 								<span>{news.date}</span>
 							</div>
+							{news.author && (
+								<div className="flex items-center text-gray-500 text-sm ml-4">
+									<User className="w-4 h-4 mr-1" />
+									<span>{news.author}</span>
+								</div>
+							)}
 						</div>
 						<h1 className="text-3xl font-bold text-gray-900 mb-4">
 							{news.title}
