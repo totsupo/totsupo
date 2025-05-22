@@ -1,0 +1,25 @@
+backend:
+  name: github
+  repo: totsupo/totsupo
+  branch: main
+  base_url: https://totsupo.pages.dev
+  auth_endpoint: /api/auth
+media_folder: "public/images"
+public_folder: "/images"
+collections:
+  - name: news
+    label: ニュース
+    folder: content/news
+    media_folder: "/public/images/news"
+    public_folder: "/images/news"
+    create: true
+    slug: "{{date}}-{{slug}}"
+    fields:
+      - { name: title, label: タイトル }
+      - { name: excerpt, label: 抜粋, widget: text }
+      - { name: date, label: 公開日, widget: datetime }
+      - { name: category, label: カテゴリ }
+      - { name: tags, label: タグ, widget: list }
+      - { name: cover, label: アイキャッチ, widget: image }
+      - { name: body, label: 本文, widget: markdown }
+publish_mode: editorial_workflow
