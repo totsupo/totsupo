@@ -1,3 +1,14 @@
+backend:
+  name: github
+  repo: totsupo/totsupo
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+publish_mode: editorial_workflow
+slug_encoding: ascii
+
 collections:
   - name: news
     label: ニュース
@@ -5,7 +16,6 @@ collections:
     format: "frontmatter"
     create: true
     slug: "{{year}}{{month}}{{day}}-{{fields.title | slugify}}"
-    slug_encoding: ascii
     fields:
       - { name: title,   label: タイトル }
       - { name: excerpt, label: 抜粋, widget: text }
