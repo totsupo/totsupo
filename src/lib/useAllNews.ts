@@ -2,7 +2,7 @@ import matter from 'gray-matter'
 import type { NewsItem } from '../types/news.ts'
 
 export function useAllNews(): NewsItem[] {
-  const files = import.meta.glob('../../content/news/*.md', {
+  const files = import.meta.glob('../content/news/*.md', {
     eager: true,
     as: 'raw',
   })

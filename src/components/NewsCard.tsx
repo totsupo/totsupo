@@ -24,7 +24,11 @@ const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
           <p className="text-gray-600 text-sm mb-3 line-clamp-3">{news.excerpt}</p>
           <div className="flex items-center text-gray-500 text-sm">
             <Calendar className="w-4 h-4 mr-1" />
-            <span>{news.date}</span>
+            <span>{new Date(news.date).toLocaleDateString('ja-JP', {
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+            })}</span>
 
             {news.author && (
               <div className="flex items-center text-gray-500 text-sm ml-4">

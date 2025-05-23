@@ -1,11 +1,12 @@
 import { Mail, Newspaper } from "lucide-react";
 import { Link } from "react-router-dom";
 import NewsCard from "../components/NewsCard";
-import { newsData } from "../data/newsData";
+import { useAllNews } from '../lib/useAllNews';
+import {useMemo} from "react";
 
 const HomePage = () => {
-	const news = newsData.slice(0, 4);
-
+	const allNews = useAllNews()
+	const news = useMemo(() => allNews.slice(0, 4), [])
 	return (
 		<div>
 			{/* Hero Section */}
@@ -38,7 +39,7 @@ const HomePage = () => {
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 					{news.map((item) => (
-						<NewsCard key={item.id} news={item} />
+						<NewsCard key={item.slug} news={item} />
 					))}
 				</div>
 				<div className="text-center mt-8">

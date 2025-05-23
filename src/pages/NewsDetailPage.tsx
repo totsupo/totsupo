@@ -77,7 +77,11 @@ const NewsDetailPage = () => {
 							</span>
 							<div className="flex items-center text-gray-500 text-sm ml-4">
 								<Calendar className="w-4 h-4 mr-1" />
-								<span>{news.date}</span>
+								<span>{new Date(news.date).toLocaleDateString('ja-JP', {
+									year: 'numeric',
+									month: 'numeric',
+									day: 'numeric',
+								})}</span>
 							</div>
 							{news.author && (
 								<div className="flex items-center text-gray-500 text-sm ml-4">
