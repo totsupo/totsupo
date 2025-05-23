@@ -23,9 +23,22 @@ collections:
       - { name: category,label: カテゴリ }
       - { name: image,   label: アイキャッチ, widget: image }
       - { name: author,  label: 編集者, required: false }
-      - { name: tags,    label: タグ, widget: list, required: false }
+      - name: tags
+        label: タグ
+        label_singular: タグ
+        widget: list
+        required: false
+        field:
+          label: タグ
+          name: tag
+          widget: string
       - name: related
         label: 関連記事
-        widget: list
+        widget: relation
+        collection: news
+        search_fields: [ title ]
+        display_fields: [ title ]
+        value_field: slug
+        multiple: true
         required: false
       - { name: body,    label: 本文, widget: markdown }
