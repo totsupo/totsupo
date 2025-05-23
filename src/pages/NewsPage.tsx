@@ -1,25 +1,30 @@
-import { useState, useEffect } from 'react'
+import {useState, useEffect, useMemo} from 'react'
 import NewsCard from '../components/NewsCard'
-import { newsData, NewsItem } from '../data/newsData'
+import { useAllNews } from '../lib/useAllNews'
+import type { NewsItem } from '../types/news'
 
 const NewsPage = () => {
-  const [filteredNews, setFilteredNews] = useState<NewsItem[]>(newsData)
+  const allPosts = useMemo(useAllNews, [])
+  const [filteredNews, setFilteredNews] = useState<NewsItem[]>(allPosts)
   const [activeCategory, setActiveCategory] = useState<string>('すべて')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
 
   // Get unique categories from news data
-  const categories = ['すべて', ...Array.from(new Set(newsData.map(item => item.category)))]
+  const categories = useMemo(
+    () => ['すべて', ...Array.from(new Set(allPosts.map((p) => p.category)))],
+    [allPosts],
+  )
 
   // Filter news when category changes
   useEffect(() => {
-    if (activeCategory === 'すべて') {
-      setFilteredNews(newsData)
-    } else {
-      setFilteredNews(newsData.filter(item => item.category === activeCategory))
-    }
-    setCurrentPage(1) // Reset to first page when filter changes
-  }, [activeCategory])
+    setFilteredNews(
+      activeCategory === 'すべて'
+        ? allPosts
+        : allPosts.filter((p) => p.category === activeCategory),
+    )
+    setCurrentPage(1)
+  }, [activeCategory, allPosts])
 
   // Get current items
   const indexOfLastItem = currentPage * itemsPerPage
@@ -62,7 +67,7 @@ const NewsPage = () => {
         {currentItems.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentItems.map(item => (
-              <NewsCard key={item.id} news={item} />
+              <NewsCard key={item.slug} news={item} />
             ))}
           </div>
         ) : (

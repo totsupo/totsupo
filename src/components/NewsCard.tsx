@@ -1,22 +1,13 @@
 import React from 'react';
 import {Calendar, User} from 'lucide-react';
 import { Link } from 'react-router-dom';
+import type { NewsItem } from '../types/news';
 
-interface NewsProps {
-  news: {
-    id: number;
-    title: string;
-    excerpt: string;
-    date: string;
-    image: string;
-    category: string;
-    author?: string;
-  };
-}
+type NewsCardProps = { news: NewsItem }
 
-const NewsCard: React.FC<NewsProps> = ({ news }) => {
+const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
   return (
-    <Link to={`/news/${news.id}`} className="block">
+    <Link to={`/news/${news.slug}`} className="block">
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
         <div className="relative">
           <img 

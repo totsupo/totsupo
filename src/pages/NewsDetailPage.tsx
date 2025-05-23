@@ -1,18 +1,18 @@
 import {ArrowLeft, Calendar, Share2, Tag, User} from "lucide-react";
-import { useCallback, useState } from "react";
+import {useCallback, useMemo, useState} from "react";
 import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import NewsCard from "../components/NewsCard";
-import { newsData } from "../data/newsData";
+import {useAllNews} from "../lib/useAllNews.ts";
+import type { NewsItem } from "../types/news";
 
 const NewsDetailPage = () => {
-	const { id } = useParams<{ id: string }>();
+	const { slug = '' } = useParams<{ slug: string }>();
 	const [copied, setCopied] = useState(false);
-	const newsId = parseInt(id || "0", 10);
-
-	const news = newsData.find((item) => item.id === newsId);
+	const posts = useMemo(useAllNews, [])
+	const news = posts.find((p) => p.slug === slug);
 
 	if (!news) {
 		return (
@@ -33,10 +33,9 @@ const NewsDetailPage = () => {
 		);
 	}
 
-	// Get related articles
-	const relatedArticles = news.relatedArticles
-		? newsData.filter((item) => news.relatedArticles?.includes(item.id))
-		: [];
+	const relatedArticles: NewsItem[] = news.related?.length
+		? posts.filter((p) => news.related!.includes(p.slug))
+		: posts.filter((p) => p.category === news.category && p.slug !== news.slug).slice(0, 3);
 
 	const handleCopyUrl = useCallback(async () => {
 		const url = window.location.href;
@@ -146,7 +145,7 @@ const NewsDetailPage = () => {
 						<h2 className="text-2xl font-bold text-gray-900 mb-6">関連記事</h2>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 							{relatedArticles.map((article) => (
-								<NewsCard key={article.id} news={article} />
+								<NewsCard key={article.slug} news={article} />
 							))}
 						</div>
 					</div>
