@@ -22,7 +22,7 @@ collections:
     fields:
       - { name: title,   label: タイトル }
       - { name: excerpt, label: 概要, widget: text }
-      - { name: date,    label: 公開日, widget: date }
+      - { name: date,    label: 公開日, widget: datetime }
       - { name: category,label: カテゴリ }
       - { name: image,   label: サムネイル, widget: image }
       - { name: author,  label: 編集者, required: false }
