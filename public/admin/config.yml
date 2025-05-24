@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://totsupo.pages.dev
   auth_endpoint: /api/auth
+  squash_merges: true
 
 media_folder: "public/images"
 public_folder: "/images"
@@ -20,10 +21,10 @@ collections:
     slug: "{{year}}{{month}}{{day}}-{{fields.title | slugify}}"
     fields:
       - { name: title,   label: タイトル }
-      - { name: excerpt, label: 抜粋, widget: text }
+      - { name: excerpt, label: 概要, widget: text }
       - { name: date,    label: 公開日, widget: datetime }
       - { name: category,label: カテゴリ }
-      - { name: image,   label: アイキャッチ, widget: image }
+      - { name: image,   label: サムネイル, widget: image }
       - { name: author,  label: 編集者, required: false }
       - name: tags
         label: タグ
@@ -34,13 +35,4 @@ collections:
           label: タグ
           name: tag
           widget: string
-      - name: related
-        label: 関連記事
-        widget: relation
-        collection: news
-        search_fields: [ title ]
-        display_fields: [ title ]
-        value_field: slug
-        multiple: true
-        required: false
       - { name: body,    label: 本文, widget: markdown }
