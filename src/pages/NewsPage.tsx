@@ -48,9 +48,9 @@ const NewsPage = () => {
 
         {/* News Categories */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <button
-              key={index}
+              key={category}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeCategory === category 
                   ? 'bg-blue-600 text-white' 

@@ -130,9 +130,9 @@ const NewsDetailPage = () => {
 						<div className="mt-8 pt-6 border-t border-gray-200">
 							<div className="flex items-center flex-wrap gap-2">
 								<Tag className="w-4 h-4 text-gray-500" />
-								{news.tags.map((tag, index) => (
+								{news.tags.map((tag) => (
 									<span
-										key={index}
+										key={tag}
 										className="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
 									>
 										{tag}
