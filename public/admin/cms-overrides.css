@@ -1,0 +1,2 @@
+.nc-imageControl-image,
+.nc-widgetImage-preview img { max-height: 150px !important; object-fit: contain; }
