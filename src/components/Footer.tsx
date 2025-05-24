@@ -1,5 +1,6 @@
-import { Coffee, Mail, createLucideIcon } from "lucide-react";
+import { Mail, createLucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoUrl from "../assets/totsuka-portal-logo.png";
 
 const XIcon = createLucideIcon("X", [
 	[
@@ -21,7 +22,7 @@ const Footer = () => {
 					{/* About */}
 					<div>
 						<div className="flex items-center mb-4">
-							<Coffee className="h-6 w-6 text-blue-400" />
+							<img src={logoUrl} alt="戸塚ぽーたる ロゴ" className="h-10 w-10" />
 							<span className="ml-2 text-xl font-bold">戸塚ぽーたる</span>
 						</div>
 						<p className="text-gray-300 mb-4">

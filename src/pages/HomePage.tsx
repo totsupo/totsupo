@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import NewsCard from "../components/NewsCard";
 import { useAllNews } from '../lib/useAllNews';
 import {useMemo} from "react";
+import portalImg from "../assets/totsuka-portal.jpg";
 
 const HomePage = () => {
 	const allNews = useAllNews()
@@ -15,7 +16,7 @@ const HomePage = () => {
 					className="w-full h-[60vh] bg-cover bg-center"
 					style={{
 						backgroundImage:
-							"url(https://images.unsplash.com/photo-1551641506-ee5bf4cb45f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80)",
+							`url(${portalImg})`,
 					}}
 				>
 					<div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">

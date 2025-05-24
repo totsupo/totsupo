@@ -1,6 +1,7 @@
-import { Coffee, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import logoUrl from "../assets/totsuka-portal-logo.png";
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +23,7 @@ const Header = () => {
 					{/* Logo */}
 					<div className="flex items-center">
 						<Link to="/" className="flex items-center">
-							<Coffee className="h-8 w-8 text-blue-600" />
+							<img src={logoUrl} alt="戸塚ぽーたる ロゴ" className="h-12 w-12" />
 							<span className="ml-2 text-xl font-bold text-gray-900">
 								戸塚ぽーたる
 							</span>
