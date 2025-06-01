@@ -6,13 +6,14 @@ import type { NewsItem } from '../types/news';
 type NewsCardProps = { news: NewsItem }
 
 const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
+  const fallback = "/images/default-thumbnail.png"
   return (
     <Link to={`/news/${news.slug}`} className="block">
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
         <div className="relative">
-          <img 
-            src={news.image} 
-            alt={news.title} 
+          <img
+            src={news.image ?? fallback}
+            alt={news.title}
             className="w-full h-48 object-cover"
           />
           <span className="absolute top-0 right-0 bg-blue-600 text-white text-sm font-medium px-3 py-1">
