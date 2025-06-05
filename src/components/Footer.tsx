@@ -28,7 +28,7 @@ const Footer = () => {
 						<p className="text-gray-300 mb-4">
 							横浜市戸塚区の魅力を発信するローカルメディア。
 							<br />
-							地域の最新ニュースなど、戸塚区の魅力を余すことなくお伝えします。
+							地域の最新記事など、戸塚区の魅力を余すことなくお伝えします。
 						</p>
 						<div className="flex space-x-4 mt-6">
 							<a
@@ -56,7 +56,7 @@ const Footer = () => {
 								to="/news"
 								className="text-gray-300 hover:text-white py-1 transition-colors"
 							>
-								ニュース
+								記事
 							</Link>
 							<Link
 								to="/contact"

@@ -14,7 +14,7 @@ slug_encoding: ascii
 
 collections:
   - name: news
-    label: ニュース
+    label: 記事
     folder: "src/content/news"
     format: "frontmatter"
     create: true

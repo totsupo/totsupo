@@ -40,9 +40,9 @@ const NewsPage = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Page Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">ニュース</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">記事</h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            戸塚区の最新ニュースをお届けします。地域の出来事、イベント情報、生活に役立つ情報など、戸塚区の「今」を知ることができます。
+            戸塚区の最新記事をお届けします。地域の出来事、イベント情報、生活に役立つ情報など、戸塚区の「今」を知ることができます。
           </p>
         </div>
 
@@ -72,7 +72,7 @@ const NewsPage = () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">この条件に一致するニュースはありません。</p>
+            <p className="text-gray-600 text-lg">この条件に一致する記事はありません。</p>
           </div>
         )}
 

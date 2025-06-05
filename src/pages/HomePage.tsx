@@ -36,7 +36,7 @@ const HomePage = () => {
 			<section className="py-12 px-4 max-w-7xl mx-auto">
 				<div className="flex items-center mb-8">
 					<Newspaper className="w-6 h-6 mr-2 text-blue-600" />
-					<h2 className="text-3xl font-bold">最新ニュース</h2>
+					<h2 className="text-3xl font-bold">最新記事</h2>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 					{news.map((item) => (
@@ -46,7 +46,7 @@ const HomePage = () => {
 				<div className="text-center mt-8">
 					<Link to="/news">
 						<button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-300">
-							ニュース一覧を見る
+							記事一覧を見る
 						</button>
 					</Link>
 				</div>
@@ -61,7 +61,7 @@ const HomePage = () => {
 					<p className="text-lg text-gray-700 mb-6 text-center">
 						「戸塚ぽーたる」は、横浜市戸塚区の魅力を発信するローカルメディアです。
 						<br />
-						地域の最新ニュースなど、戸塚区の魅力を余すことなくお伝えします。
+						地域の最新記事など、戸塚区の魅力を余すことなくお伝えします。
 					</p>
 					<div className="flex flex-col md:flex-row justify-center items-center gap-6 mt-8">
 						<div className="flex items-center">

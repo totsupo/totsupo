@@ -42,7 +42,7 @@ const Header = () => {
 							to="/news"
 							className="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium"
 						>
-							ニュース
+							記事
 						</Link>
 						<Link
 							to="/contact"
@@ -84,7 +84,7 @@ const Header = () => {
 							to="/news"
 							className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
 						>
-							ニュース
+							記事
 						</Link>
 						<Link
 							to="/contact"

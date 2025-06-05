@@ -27,7 +27,7 @@ const NewsDetailPage = () => {
 						className="text-blue-600 hover:underline flex items-center justify-center"
 					>
 						<ArrowLeft className="w-4 h-4 mr-1" />
-						ニュース一覧に戻る
+						記事一覧に戻る
 					</Link>
 				</div>
 			</div>
@@ -61,7 +61,7 @@ const NewsDetailPage = () => {
 						</Link>
 						<span className="mx-2">/</span>
 						<Link to="/news" className="hover:text-blue-600">
-							ニュース
+							記事
 						</Link>
 						<span className="mx-2">/</span>
 						<span className="text-gray-900">{news.title}</span>
@@ -163,7 +163,7 @@ const NewsDetailPage = () => {
 						className="inline-flex items-center text-blue-600 hover:underline"
 					>
 						<ArrowLeft className="w-4 h-4 mr-1" />
-						ニュース一覧に戻る
+						記事一覧に戻る
 					</Link>
 				</div>
 			</div>
