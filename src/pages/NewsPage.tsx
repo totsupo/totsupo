@@ -1,29 +1,47 @@
-import {useState, useEffect, useMemo} from 'react'
-import NewsCard from '../components/NewsCard'
-import { useAllNews } from '../lib/useAllNews'
-import type { NewsItem } from '../types/news'
+import { useState, useEffect, useMemo } from "react"
+import { useSearchParams } from "react-router-dom"
+import NewsCard from "../components/NewsCard"
+import { useAllNews } from "../lib/useAllNews"
+import type { NewsItem } from "../types/news"
 
 const NewsPage = () => {
   const allPosts = useMemo(useAllNews, [])
+  const [searchParams, setSearchParams] = useSearchParams()
   const [filteredNews, setFilteredNews] = useState<NewsItem[]>(allPosts)
-  const [activeCategory, setActiveCategory] = useState<string>('すべて')
-  const [currentPage, setCurrentPage] = useState(1)
+
+  // URLパラメータから初期値を取得
+  const [activeCategory, setActiveCategory] = useState<string>(
+    searchParams.get("category") || "すべて",
+  )
+  const [currentPage, setCurrentPage] = useState(Number(searchParams.get("page")) || 1)
   const itemsPerPage = 6
 
   // Get unique categories from news data
   const categories = useMemo(
-    () => ['すべて', ...Array.from(new Set(allPosts.map((p) => p.category)))],
+    () => ["すべて", ...Array.from(new Set(allPosts.map((p) => p.category)))],
     [allPosts],
   )
+
+  // URLパラメータが変更された時の処理
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get("category") || "すべて"
+    const pageFromUrl = Number(searchParams.get("page")) || 1
+
+    if (categoryFromUrl !== activeCategory) {
+      setActiveCategory(categoryFromUrl)
+    }
+    if (pageFromUrl !== currentPage) {
+      setCurrentPage(pageFromUrl)
+    }
+  }, [searchParams, activeCategory, currentPage])
 
   // Filter news when category changes
   useEffect(() => {
     setFilteredNews(
-      activeCategory === 'すべて'
+      activeCategory === "すべて"
         ? allPosts
         : allPosts.filter((p) => p.category === activeCategory),
     )
-    setCurrentPage(1)
   }, [activeCategory, allPosts])
 
   // Get current items
@@ -32,9 +50,22 @@ const NewsPage = () => {
   const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem)
   const totalPages = Math.ceil(filteredNews.length / itemsPerPage)
 
+  // URLパラメータを更新する関数
+  const updateUrlParams = (category: string, page: number) => {
+    const params = new URLSearchParams()
+    if (category !== "すべて") {
+      params.set("category", category)
+    }
+    if (page > 1) {
+      params.set("page", page.toString())
+    }
+    setSearchParams(params)
+  }
+
   // Change page
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber)
+    updateUrlParams(activeCategory, pageNumber)
     window.scrollTo(0, 0)
   }
 
@@ -55,11 +86,15 @@ const NewsPage = () => {
             <button
               key={category}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                activeCategory === category 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                activeCategory === category
+                  ? "bg-blue-600 text-white"
+                  : "bg-white text-gray-700 hover:bg-gray-100"
               }`}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => {
+                setActiveCategory(category)
+                setCurrentPage(1)
+                updateUrlParams(category, 1)
+              }}
             >
               {category}
             </button>
@@ -69,7 +104,7 @@ const NewsPage = () => {
         {/* News Grid */}
         {currentItems.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentItems.map(item => (
+            {currentItems.map((item) => (
               <NewsCard key={item.slug} news={item} />
             ))}
           </div>
@@ -87,7 +122,9 @@ const NewsPage = () => {
                 onClick={() => paginate(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
                 className={`py-2 px-4 bg-white border border-gray-300 text-sm font-medium ${
-                  currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'
+                  currentPage === 1
+                    ? "text-gray-400 cursor-not-allowed"
+                    : "text-gray-500 hover:bg-gray-50"
                 } rounded-l-md`}
               >
                 前へ
@@ -95,7 +132,7 @@ const NewsPage = () => {
 
               {Array.from({ length: Math.min(totalPages, 3) }).map((_, index) => {
                 // Show current page and adjacent pages
-                let pageNumber
+                let pageNumber: number
                 if (totalPages <= 3) {
                   pageNumber = index + 1
                 } else if (currentPage === 1) {
@@ -112,8 +149,8 @@ const NewsPage = () => {
                     onClick={() => paginate(pageNumber)}
                     className={`py-2 px-4 border text-sm font-medium ${
                       currentPage === pageNumber
-                        ? 'bg-blue-600 border-blue-600 text-white'
-                        : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                        ? "bg-blue-600 border-blue-600 text-white"
+                        : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
                     }`}
                   >
                     {pageNumber}
@@ -125,7 +162,9 @@ const NewsPage = () => {
                 onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
                 className={`py-2 px-4 bg-white border border-gray-300 text-sm font-medium ${
-                  currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'
+                  currentPage === totalPages
+                    ? "text-gray-400 cursor-not-allowed"
+                    : "text-gray-500 hover:bg-gray-50"
                 } rounded-r-md`}
               >
                 次へ
