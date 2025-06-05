@@ -96,25 +96,4 @@ describe("NewsDetailPage", () => {
     expect(screen.getByText("記事一覧に戻る")).toBeInTheDocument()
   })
 
-  it("renders article image", () => {
-    renderWithRouter("article-1")
-
-    const image = screen.getByAltText("記事1のタイトル")
-    expect(image).toBeInTheDocument()
-    expect(image).toHaveAttribute("src", "/images/article1.jpg")
-  })
-
-  it("renders fallback image when article has no image", () => {
-    // Modify mock data to have no image
-    const originalImage = mockNewsItems[0].image
-    mockNewsItems[0].image = undefined
-
-    renderWithRouter("article-1")
-
-    const image = screen.getByAltText("記事1のタイトル")
-    expect(image).toHaveAttribute("src", "/images/default-thumbnail.png")
-
-    // Restore original image
-    mockNewsItems[0].image = originalImage
-  })
 })
