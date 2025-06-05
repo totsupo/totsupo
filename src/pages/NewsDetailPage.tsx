@@ -67,21 +67,18 @@ const NewsDetailPage = () => {
         </div>
 
         {/* Article Header */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-          <div className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden bg-gray-100">
-            <img 
-              src={news.image ?? fallback} 
-              alt={news.title} 
-              className="w-full h-full object-cover object-center transition-opacity duration-300"
-              loading="lazy"
-            />
-          </div>
-          <div className="p-6">
-            <div className="flex items-center mb-4">
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">{news.title}</h1>
+          <p className="text-lg text-gray-700 mb-6">{news.excerpt}</p>
+          
+          {/* Category, Date, Author and Share Button */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            {/* Category, Date, Author */}
+            <div className="flex flex-wrap items-center gap-4">
               <span className="bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded-full">
                 {news.category}
               </span>
-              <div className="flex items-center text-gray-500 text-sm ml-4">
+              <div className="flex items-center text-gray-500 text-sm">
                 <Calendar className="w-4 h-4 mr-1" />
                 <span>
                   {new Date(news.date).toLocaleDateString("ja-JP", {
@@ -92,18 +89,17 @@ const NewsDetailPage = () => {
                 </span>
               </div>
               {news.author && (
-                <div className="flex items-center text-gray-500 text-sm ml-4">
+                <div className="flex items-center text-gray-500 text-sm">
                   <User className="w-4 h-4 mr-1" />
                   <span>{news.author}</span>
                 </div>
               )}
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">{news.title}</h1>
-            <p className="text-lg text-gray-700 mb-4">{news.excerpt}</p>
 
             {/* Social Share */}
-            <div className="flex items-center space-x-4 mb-6">
+            <div className="flex items-center space-x-4">
               <button
+                type="button"
                 onClick={handleCopyUrl}
                 className="flex items-center text-gray-500 hover:text-blue-600"
               >
