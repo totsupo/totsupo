@@ -13,7 +13,9 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "test:ci": "vitest --run",
-    "build:ci": "npm run test:ci && npm run build"
+    "build:ci": "npm run test:ci && npm run build",
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "prebuild": "npm run generate:sitemap"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
