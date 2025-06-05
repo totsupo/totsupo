@@ -1,6 +1,7 @@
 import { Mail, Newspaper } from "lucide-react"
 import { Link } from "react-router-dom"
 import NewsCard from "../components/NewsCard"
+import SEOHead from "../components/SEOHead"
 import { useAllNews } from "../lib/useAllNews"
 import { useMemo } from "react"
 import portalImg from "../assets/totsuka-portal.jpg"
@@ -9,7 +10,9 @@ const HomePage = () => {
   const allNews = useAllNews()
   const news = useMemo(() => allNews.slice(0, 4), [allNews])
   return (
-    <div>
+    <>
+      <SEOHead />
+      <div>
       {/* Hero Section */}
       <div className="relative">
         <div
@@ -67,7 +70,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }
 

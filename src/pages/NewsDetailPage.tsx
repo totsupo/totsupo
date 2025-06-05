@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
 import NewsCard from "../components/NewsCard"
+import SEOHead from "../components/SEOHead"
 import { useAllNews } from "../lib/useAllNews.ts"
 import type { NewsItem } from "../types/news"
 
@@ -49,7 +50,20 @@ const NewsDetailPage = () => {
   }, [])
 
   return (
-    <div className="bg-gray-50 py-12">
+    <>
+      <SEOHead
+        title={`${news.title} | 戸塚ぽーたる`}
+        description={news.excerpt}
+        image={news.image ? `https://totsupo.pages.dev${news.image}` : 'https://totsupo.pages.dev/favicon.png'}
+        url={`https://totsupo.pages.dev/article/${news.slug}`}
+        type="article"
+        publishedTime={new Date(news.date).toISOString()}
+        modifiedTime={new Date(news.date).toISOString()}
+        section={news.category}
+        tags={news.tags}
+        author={news.author || '戸塚ぽーたる編集部'}
+      />
+      <div className="bg-gray-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
         {/* Breadcrumb */}
         <div className="mb-6">
@@ -162,7 +176,8 @@ const NewsDetailPage = () => {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 

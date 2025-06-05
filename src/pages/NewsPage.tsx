@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react"
 import { useSearchParams } from "react-router-dom"
 import NewsCard from "../components/NewsCard"
+import SEOHead from "../components/SEOHead"
 import { useAllNews } from "../lib/useAllNews"
 import type { NewsItem } from "../types/news"
 
@@ -70,7 +71,13 @@ const NewsPage = () => {
   }
 
   return (
-    <div className="bg-gray-50 py-12">
+    <>
+      <SEOHead
+        title="記事一覧 | 戸塚ぽーたる"
+        description="戸塚区の最新記事一覧。地域の出来事、イベント情報、生活に役立つ情報など、戸塚区の「今」を知ることができます。"
+        url="https://totsupo.pages.dev/article"
+      />
+      <div className="bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4">
         {/* Page Header */}
         <div className="text-center mb-12">
@@ -173,7 +180,8 @@ const NewsPage = () => {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 
