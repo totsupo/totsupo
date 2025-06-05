@@ -52,9 +52,8 @@ export function getAllNews(): NewsItem[] {
       if (!slug) {
         // Use frontmatter slug if available and valid
         if (data.slug && typeof data.slug === 'string' && /^[a-zA-Z0-9\-_]+$/.test(data.slug)) {
-          // Extract date prefix from filename for consistency
-          const dateMatch = filenameWithoutExt.match(/^(\d{8})-/)
-          slug = dateMatch ? `${dateMatch[1]}-${data.slug}` : data.slug
+          // Use the slug as-is without date prefix for frontmatter slugs
+          slug = data.slug
         } else {
           slug = generateShortSlug(filenameWithoutExt)
         }
