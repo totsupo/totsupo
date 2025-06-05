@@ -6,23 +6,19 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
-      "style": {
-        "noSemicolon": "error"
-      }
+      "recommended": true
     }
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 100,
-    "semicolons": "asNeeded"
+    "lineWidth": 100
   },
   "javascript": {
     "formatter": {
       "semicolons": "asNeeded",
-      "trailingCommas": "all"
+      "trailingComma": "all"
     }
   }
 }

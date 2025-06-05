@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import HomePage from './pages/HomePage'
-import NewsPage from './pages/NewsPage'
-import ContactPage from './pages/ContactPage'
-import NewsDetailPage from './pages/NewsDetailPage'
+import { useEffect } from "react"
+import { Routes, Route, useLocation } from "react-router-dom"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import HomePage from "./pages/HomePage"
+import NewsPage from "./pages/NewsPage"
+import ContactPage from "./pages/ContactPage"
+import NewsDetailPage from "./pages/NewsDetailPage"
 
 function App() {
   const location = useLocation()

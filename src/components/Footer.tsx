@@ -1,97 +1,86 @@
-import { Mail, createLucideIcon } from "lucide-react";
-import { Link } from "react-router-dom";
-import logoUrl from "../assets/totsuka-portal-logo.png";
+import { Mail, createLucideIcon } from "lucide-react"
+import { Link } from "react-router-dom"
+import logoUrl from "../assets/totsuka-portal-logo.png"
 
 const XIcon = createLucideIcon("X", [
-	[
-		"path",
-		{
-			d: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z",
-			stroke: "none",
-			fill: "currentColor",
-			key: "1",
-		},
-	],
-]);
+  [
+    "path",
+    {
+      d: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z",
+      stroke: "none",
+      fill: "currentColor",
+      key: "1",
+    },
+  ],
+])
 
 const Footer = () => {
-	return (
-		<footer className="bg-gray-800 text-white">
-			<div className="max-w-7xl mx-auto px-4 py-12">
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-					{/* About */}
-					<div>
-						<div className="flex items-center mb-4">
-							<img src={logoUrl} alt="戸塚ぽーたる ロゴ" className="h-10 w-10" />
-							<span className="ml-2 text-xl font-bold">戸塚ぽーたる</span>
-						</div>
-						<p className="text-gray-300 mb-4">
-							横浜市戸塚区の魅力を発信するローカルメディア。
-							<br />
-							地域の最新記事など、戸塚区の魅力を余すことなくお伝えします。
-						</p>
-						<div className="flex space-x-4 mt-6">
-							<a
-								href="https://x.com/totsuka_portal"
-								className="text-gray-300 hover:text-white transition-colors"
-							>
-								<XIcon className="h-5 w-5" />
-							</a>
-						</div>
-					</div>
+  return (
+    <footer className="bg-gray-800 text-white">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* About */}
+          <div>
+            <div className="flex items-center mb-4">
+              <img src={logoUrl} alt="戸塚ぽーたる ロゴ" className="h-10 w-10" />
+              <span className="ml-2 text-xl font-bold">戸塚ぽーたる</span>
+            </div>
+            <p className="text-gray-300 mb-4">
+              横浜市戸塚区の魅力を発信するローカルメディア。
+              <br />
+              地域の最新記事など、戸塚区の魅力を余すことなくお伝えします。
+            </p>
+            <div className="flex space-x-4 mt-6">
+              <a
+                href="https://x.com/totsuka_portal"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                <XIcon className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
 
-					{/* Quick Links */}
-					<div>
-						<h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
-							サイトマップ
-						</h3>
-						<div className="grid grid-cols-2 gap-2">
-							<Link
-								to="/"
-								className="text-gray-300 hover:text-white py-1 transition-colors"
-							>
-								ホーム
-							</Link>
-							<Link
-								to="/article"
-								className="text-gray-300 hover:text-white py-1 transition-colors"
-							>
-								記事
-							</Link>
-							<Link
-								to="/contact"
-								className="text-gray-300 hover:text-white py-1 transition-colors"
-							>
-								お問い合わせ
-							</Link>
-						</div>
-					</div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+              サイトマップ
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              <Link to="/" className="text-gray-300 hover:text-white py-1 transition-colors">
+                ホーム
+              </Link>
+              <Link to="/article" className="text-gray-300 hover:text-white py-1 transition-colors">
+                記事
+              </Link>
+              <Link to="/contact" className="text-gray-300 hover:text-white py-1 transition-colors">
+                お問い合わせ
+              </Link>
+            </div>
+          </div>
 
-					{/* Contact */}
-					<div>
-						<h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
-							お問い合わせ
-						</h3>
-						<address className="not-italic">
-							<div className="flex items-start mb-3">
-								<Mail className="h-5 w-5 mr-3 text-blue-400 mt-0.5" />
-								<div>
-									<p className="text-gray-300">totsuka.portal@gmail.com</p>
-									<p className="text-sm text-gray-400">24時間受付</p>
-								</div>
-							</div>
-						</address>
-					</div>
-				</div>
+          {/* Contact */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+              お問い合わせ
+            </h3>
+            <address className="not-italic">
+              <div className="flex items-start mb-3">
+                <Mail className="h-5 w-5 mr-3 text-blue-400 mt-0.5" />
+                <div>
+                  <p className="text-gray-300">totsuka.portal@gmail.com</p>
+                  <p className="text-sm text-gray-400">24時間受付</p>
+                </div>
+              </div>
+            </address>
+          </div>
+        </div>
 
-				<div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-					<p>
-						&copy; {new Date().getFullYear()} 戸塚ぽーたる All Rights Reserved.
-					</p>
-				</div>
-			</div>
-		</footer>
-	);
-};
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; {new Date().getFullYear()} 戸塚ぽーたる All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
 
-export default Footer;
+export default Footer

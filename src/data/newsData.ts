@@ -1,23 +1,23 @@
 export interface NewsItem {
-	id: number;
-	title: string;
-	excerpt: string;
-	content: string;
-	date: string;
-	image: string;
-	category: string;
-	author?: string;
-	tags?: string[];
-	relatedArticles?: number[];
+  id: number
+  title: string
+  excerpt: string
+  content: string
+  date: string
+  image: string
+  category: string
+  author?: string
+  tags?: string[]
+  relatedArticles?: number[]
 }
 
 export const newsData: NewsItem[] = [
-	{
-		id: 1,
-		title: "戸塚駅東口すぐの新スポット「トツカド」、見てきました。",
-		excerpt:
-			"戸塚駅東口すぐの新スポット「トツカド」、見てきました。6月オープン予定の飲食ビル、けっこう目立ってます",
-		content: `
+  {
+    id: 1,
+    title: "戸塚駅東口すぐの新スポット「トツカド」、見てきました。",
+    excerpt:
+      "戸塚駅東口すぐの新スポット「トツカド」、見てきました。6月オープン予定の飲食ビル、けっこう目立ってます",
+    content: `
 戸塚駅の東口を出て、信号を渡ったすぐ先。  
 しばらく前から工事中だった場所に、なんだかオシャレな建物ができていました。
 <img src="/images/IMG_9812.jpg"
@@ -53,20 +53,19 @@ export const newsData: NewsItem[] = [
 
 6月、ちょっと楽しみです。
 `,
-		date: "2025年5月10日",
-		image: "/images/IMG_9812.jpg",
-		category: "開店",
-		author: "編集部",
-		tags: ["新店舗", "戸塚駅"],
-		relatedArticles: [],
-	},
-	{
-		id: 2,
-		title:
-			"戸塚駅すぐ、電車を見守る2頭のヤギ。「メイちゃん」と「ゆいちゃん」がこの街にいる理由。",
-		excerpt:
-			"戸塚駅東口近くで暮らすヤギ姉妹「メイちゃん」と「ゆいちゃん」。駅ホームからも見える2頭の素顔に迫ります。",
-		content: `
+    date: "2025年5月10日",
+    image: "/images/IMG_9812.jpg",
+    category: "開店",
+    author: "編集部",
+    tags: ["新店舗", "戸塚駅"],
+    relatedArticles: [],
+  },
+  {
+    id: 2,
+    title: "戸塚駅すぐ、電車を見守る2頭のヤギ。「メイちゃん」と「ゆいちゃん」がこの街にいる理由。",
+    excerpt:
+      "戸塚駅東口近くで暮らすヤギ姉妹「メイちゃん」と「ゆいちゃん」。駅ホームからも見える2頭の素顔に迫ります。",
+    content: `
 戸塚駅の東口を出て、線路沿いを少し歩いた先。  
 ふと足を止めてみると、目が合うのは…**ヤギ**。  
 <img src="/images/IMG_9814.jpg"
@@ -112,18 +111,18 @@ export const newsData: NewsItem[] = [
 > 2. アメブロ・戸塚やぎブログ  
 >    <https://ameblo.jp/atotsuka864/archive-202505.html>
 `,
-		date: "2025年5月10日",
-		image: "/images/IMG_9814.jpg",
-		category: "街ネタ",
-		author: "編集部",
-		tags: ["動物", "戸塚駅", "ヤギ"],
-		relatedArticles: [],
-	},
-	{
-		id: 3,
-		title: "家系ラーメン店「六角家」。トツカーナモールへ移転予定！",
-		excerpt: "学生にも愛される名店がトツカーナへ移転！",
-		content: `
+    date: "2025年5月10日",
+    image: "/images/IMG_9814.jpg",
+    category: "街ネタ",
+    author: "編集部",
+    tags: ["動物", "戸塚駅", "ヤギ"],
+    relatedArticles: [],
+  },
+  {
+    id: 3,
+    title: "家系ラーメン店「六角家」。トツカーナモールへ移転予定！",
+    excerpt: "学生にも愛される名店がトツカーナへ移転！",
+    content: `
 <img src="/images/IMG_9798.jpg"
      alt="六角家 戸塚店 外観"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
@@ -144,20 +143,19 @@ export const newsData: NewsItem[] = [
 参考  
 > - 公式 X: https://x.com/rokkakutotsuka
 `,
-		date: "2025年5月10日",
-		image: "/images/IMG_9798.jpg",
-		category: "移転",
-		author: "編集部",
-		tags: ["ラーメン", "移転"],
-		relatedArticles: [],
-	},
-	{
-		id: 4,
-		title:
-			"2年間の営業に幕――『亜細亜楼〜爺爺の「ワンタンと豚バラの店」』が 5/21 で閉店へ",
-		excerpt:
-			"中華料理店『亜細亜楼〜爺爺の「ワンタンと豚バラの店」』が、2025年5月21日のランチ営業をもって閉店。",
-		content: `
+    date: "2025年5月10日",
+    image: "/images/IMG_9798.jpg",
+    category: "移転",
+    author: "編集部",
+    tags: ["ラーメン", "移転"],
+    relatedArticles: [],
+  },
+  {
+    id: 4,
+    title: "2年間の営業に幕――『亜細亜楼〜爺爺の「ワンタンと豚バラの店」』が 5/21 で閉店へ",
+    excerpt:
+      "中華料理店『亜細亜楼〜爺爺の「ワンタンと豚バラの店」』が、2025年5月21日のランチ営業をもって閉店。",
+    content: `
 <img src="/images/IMG_9819.jpg"
      alt="亜細亜楼 外観"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
@@ -190,11 +188,11 @@ export const newsData: NewsItem[] = [
 > - 公式 Instagram: https://www.instagram.com/ajiarou_ieienomise/
 
 `,
-		date: "2025年5月10日",
-		image: "/images/IMG_9819.jpg",
-		category: "閉店",
-		author: "編集部",
-		tags: ["中華料理", "閉店", "戸塚駅"],
-		relatedArticles: [],
-	},
-];
+    date: "2025年5月10日",
+    image: "/images/IMG_9819.jpg",
+    category: "閉店",
+    author: "編集部",
+    tags: ["中華料理", "閉店", "戸塚駅"],
+    relatedArticles: [],
+  },
+]
