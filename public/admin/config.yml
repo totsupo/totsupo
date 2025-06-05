@@ -2,7 +2,7 @@ backend:
   name: github
   repo: totsupo/totsupo
   branch: main
-  base_url: https://totsupo.pages.dev
+  base_url: https://totsupo-next.pages.dev
   auth_endpoint: /api/auth
   squash_merges: true
 
