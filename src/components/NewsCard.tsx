@@ -1,6 +1,6 @@
 import React from "react"
 import { Calendar, User } from "lucide-react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import type { NewsItem } from "../types/news"
 
 type NewsCardProps = { news: NewsItem }
@@ -8,7 +8,7 @@ type NewsCardProps = { news: NewsItem }
 const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
   const fallback = "/images/default-thumbnail.png"
   return (
-    <Link to={`/article/${news.slug}`} className="block">
+    <Link href={`/article/${news.slug}`} className="block">
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
         <div className="relative">
           <img src={news.image ?? fallback} alt={news.title} className="w-full h-48 object-cover" />
