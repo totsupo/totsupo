@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 記事コンテンツ内のiframe（Google Mapなど）をレスポンシブ対応 */
+.prose iframe {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 4/3; /* Google Mapの標準比率 */
+  border: 0;
+}
+
+/* 小さい画面では高さを調整 */
+@media (max-width: 768px) {
+  .prose iframe {
+    aspect-ratio: 16/9; /* モバイルでは少し横長に */
+    min-height: 250px;
+  }
+}
