@@ -37,12 +37,15 @@ export function getAllNews(): NewsItem[] {
 // Server-side function to get single news item
 export function getNewsBySlug(slug: string): NewsItem | null {
   try {
-    const filePath = path.join(process.cwd(), 'src/content/news', `${slug}.md`)
+    // URL-decode the slug to handle encoded characters (e.g., Japanese characters)
+    const decodedSlug = decodeURIComponent(slug)
+    const filePath = path.join(process.cwd(), 'src/content/news', `${decodedSlug}.md`)
+    
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(fileContents)
     
     return {
-      slug,
+      slug: decodedSlug, // Use the decoded slug for consistency
       content,
       ...(data as Omit<NewsItem, "slug" | "content">)
     }
