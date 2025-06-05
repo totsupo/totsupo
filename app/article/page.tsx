@@ -1,4 +1,5 @@
 import { getAllNews } from "@/src/lib/useAllNews"
+import { Suspense } from "react"
 import ArticleList from './ArticleList'
 
 export const metadata = {
@@ -14,5 +15,9 @@ export const metadata = {
 export default function ArticlePage() {
   const allPosts = getAllNews()
   
-  return <ArticleList allPosts={allPosts} />
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ArticleList allPosts={allPosts} />
+    </Suspense>
+  )
 }

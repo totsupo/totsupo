@@ -1,5 +1,5 @@
 import { Mail, createLucideIcon } from "lucide-react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import logoUrl from "../assets/totsuka-portal-logo.png"
 
 const XIcon = createLucideIcon("X", [
@@ -22,7 +22,7 @@ const Footer = () => {
           {/* About */}
           <div>
             <div className="flex items-center mb-4">
-              <img src={logoUrl} alt="戸塚ぽーたる ロゴ" className="h-10 w-10" />
+              <img src={logoUrl.src} alt="戸塚ぽーたる ロゴ" className="h-10 w-10" />
               <span className="ml-2 text-xl font-bold">戸塚ぽーたる</span>
             </div>
             <p className="text-gray-300 mb-4">
@@ -46,13 +46,13 @@ const Footer = () => {
               サイトマップ
             </h3>
             <div className="grid grid-cols-2 gap-2">
-              <Link to="/" className="text-gray-300 hover:text-white py-1 transition-colors">
+              <Link href="/" className="text-gray-300 hover:text-white py-1 transition-colors">
                 ホーム
               </Link>
-              <Link to="/article" className="text-gray-300 hover:text-white py-1 transition-colors">
+              <Link href="/article" className="text-gray-300 hover:text-white py-1 transition-colors">
                 記事
               </Link>
-              <Link to="/contact" className="text-gray-300 hover:text-white py-1 transition-colors">
+              <Link href="/contact" className="text-gray-300 hover:text-white py-1 transition-colors">
                 お問い合わせ
               </Link>
             </div>
