@@ -53,7 +53,7 @@ const Footer = () => {
 								ホーム
 							</Link>
 							<Link
-								to="/news"
+								to="/article"
 								className="text-gray-300 hover:text-white py-1 transition-colors"
 							>
 								記事

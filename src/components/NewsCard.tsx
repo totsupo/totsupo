@@ -8,7 +8,7 @@ type NewsCardProps = { news: NewsItem }
 const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
   const fallback = "/images/default-thumbnail.png"
   return (
-    <Link to={`/news/${news.slug}`} className="block">
+    <Link to={`/article/${news.slug}`} className="block">
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
         <div className="relative">
           <img

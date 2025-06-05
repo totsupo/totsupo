@@ -44,7 +44,7 @@ const HomePage = () => {
 					))}
 				</div>
 				<div className="text-center mt-8">
-					<Link to="/news">
+					<Link to="/article">
 						<button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-300">
 							記事一覧を見る
 						</button>
