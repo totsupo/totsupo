@@ -68,7 +68,14 @@ const NewsDetailPage = () => {
 
         {/* Article Header */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-          <img src={news.image ?? fallback} alt={news.title} className="aspect-[16/9]" />
+          <div className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden bg-gray-100">
+            <img 
+              src={news.image ?? fallback} 
+              alt={news.title} 
+              className="w-full h-full object-cover object-center transition-opacity duration-300"
+              loading="lazy"
+            />
+          </div>
           <div className="p-6">
             <div className="flex items-center mb-4">
               <span className="bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded-full">
