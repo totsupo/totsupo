@@ -18,9 +18,10 @@ collections:
     folder: "src/content/news"
     format: "frontmatter"
     create: true
-    slug: "{{year}}{{month}}{{day}}-{{fields.title | slugify}}"
+    slug: "{{year}}{{month}}{{day}}-{{slug}}"
     fields:
       - { name: title,   label: タイトル }
+      - { name: slug,    label: URL Slug, hint: "URL用の英数字とハイフンのみ（例: new-restaurant-opens)", pattern: ['^[a-zA-Z0-9\-_]+$', 'URLに使用可能な文字のみ(a-z, 0-9, -, _)'] }
       - { name: excerpt, label: 概要, widget: text }
       - { name: date,    label: 公開日, widget: datetime }
       - { name: category,label: カテゴリ }
