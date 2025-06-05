@@ -33,7 +33,10 @@ const NewsPage = () => {
   const totalPages = Math.ceil(filteredNews.length / itemsPerPage)
 
   // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber)
+    window.scrollTo(0, 0)
+  }
 
   return (
     <div className="bg-gray-50 py-12">
