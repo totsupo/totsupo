@@ -2,14 +2,18 @@
 
 import { useState, useEffect, useMemo } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
+import { Tag, X } from "lucide-react"
 import NewsCard from "@/src/components/NewsCard"
+import TagCloud from "@/src/components/TagCloud"
+import { slugToTag, tagToSlug, type TagInfo } from "@/src/lib/tagUtils.client"
 import type { NewsItem } from "@/src/types/news"
 
 interface Props {
   allPosts: NewsItem[]
+  allTags: TagInfo[]
 }
 
-export default function ArticleList({ allPosts }: Props) {
+export default function ArticleList({ allPosts, allTags }: Props) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [filteredNews, setFilteredNews] = useState<NewsItem[]>(allPosts)
@@ -17,6 +21,9 @@ export default function ArticleList({ allPosts }: Props) {
   // URLパラメータから初期値を取得
   const [activeCategory, setActiveCategory] = useState<string>(
     searchParams.get("category") || "すべて",
+  )
+  const [selectedTags, setSelectedTags] = useState<string[]>(
+    searchParams.get("tags")?.split(",").filter(Boolean) || []
   )
   const [currentPage, setCurrentPage] = useState(Number(searchParams.get("page")) || 1)
   const itemsPerPage = 6
@@ -27,27 +34,47 @@ export default function ArticleList({ allPosts }: Props) {
     [allPosts],
   )
 
+  // Get all available tags (passed as props)
+
   // URLパラメータが変更された時の処理
   useEffect(() => {
     const categoryFromUrl = searchParams.get("category") || "すべて"
+    const tagsFromUrl = searchParams.get("tags")?.split(",").filter(Boolean) || []
     const pageFromUrl = Number(searchParams.get("page")) || 1
 
     if (categoryFromUrl !== activeCategory) {
       setActiveCategory(categoryFromUrl)
     }
+    
+    // Decode tags from URL
+    const decodedTags = tagsFromUrl.map(slugToTag)
+    if (JSON.stringify(decodedTags) !== JSON.stringify(selectedTags)) {
+      setSelectedTags(decodedTags)
+    }
+    
     if (pageFromUrl !== currentPage) {
       setCurrentPage(pageFromUrl)
     }
-  }, [searchParams, activeCategory, currentPage])
+  }, [searchParams, activeCategory, selectedTags, currentPage])
 
-  // Filter news when category changes
+  // Filter news when category or tags change
   useEffect(() => {
-    setFilteredNews(
-      activeCategory === "すべて"
-        ? allPosts
-        : allPosts.filter((p) => p.category === activeCategory),
-    )
-  }, [activeCategory, allPosts])
+    let filtered = allPosts
+
+    // Filter by category
+    if (activeCategory !== "すべて") {
+      filtered = filtered.filter((p) => p.category === activeCategory)
+    }
+
+    // Filter by tags
+    if (selectedTags.length > 0) {
+      filtered = filtered.filter((p) => 
+        selectedTags.every(tag => p.tags && p.tags.includes(tag))
+      )
+    }
+
+    setFilteredNews(filtered)
+  }, [activeCategory, selectedTags, allPosts])
 
   // Get current items
   const indexOfLastItem = currentPage * itemsPerPage
@@ -56,10 +83,15 @@ export default function ArticleList({ allPosts }: Props) {
   const totalPages = Math.ceil(filteredNews.length / itemsPerPage)
 
   // URLパラメータを更新する関数
-  const updateUrlParams = (category: string, page: number) => {
+  const updateUrlParams = (category: string, tags: string[], page: number) => {
     const params = new URLSearchParams()
     if (category !== "すべて") {
       params.set("category", category)
+    }
+    if (tags.length > 0) {
+      // Encode tags for URL
+      const encodedTags = tags.map(tagToSlug)
+      params.set("tags", encodedTags.join(","))
     }
     if (page > 1) {
       params.set("page", page.toString())
@@ -67,10 +99,35 @@ export default function ArticleList({ allPosts }: Props) {
     router.push(`/article?${params.toString()}`)
   }
 
+  // Add tag to filter
+  const addTag = (tag: string) => {
+    if (!selectedTags.includes(tag)) {
+      const newTags = [...selectedTags, tag]
+      setSelectedTags(newTags)
+      setCurrentPage(1)
+      updateUrlParams(activeCategory, newTags, 1)
+    }
+  }
+
+  // Remove tag from filter
+  const removeTag = (tag: string) => {
+    const newTags = selectedTags.filter(t => t !== tag)
+    setSelectedTags(newTags)
+    setCurrentPage(1)
+    updateUrlParams(activeCategory, newTags, 1)
+  }
+
+  // Clear all tags
+  const clearAllTags = () => {
+    setSelectedTags([])
+    setCurrentPage(1)
+    updateUrlParams(activeCategory, [], 1)
+  }
+
   // Change page
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber)
-    updateUrlParams(activeCategory, pageNumber)
+    updateUrlParams(activeCategory, selectedTags, pageNumber)
     window.scrollTo(0, 0)
   }
 
@@ -86,7 +143,7 @@ export default function ArticleList({ allPosts }: Props) {
         </div>
 
         {/* News Categories */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 mb-6">
           {categories.map((category) => (
             <button
               key={category}
@@ -98,12 +155,73 @@ export default function ArticleList({ allPosts }: Props) {
               onClick={() => {
                 setActiveCategory(category)
                 setCurrentPage(1)
-                updateUrlParams(category, 1)
+                updateUrlParams(category, selectedTags, 1)
               }}
             >
               {category}
             </button>
           ))}
+        </div>
+
+        {/* Tag Filtering */}
+        <div className="mb-8">
+          {/* Selected Tags */}
+          {selectedTags.length > 0 && (
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Tag className="w-4 h-4 text-gray-600" />
+                <span className="text-sm font-medium text-gray-700">選択中のタグ:</span>
+                <button
+                  onClick={clearAllTags}
+                  className="text-xs text-red-600 hover:text-red-800 underline"
+                >
+                  すべて解除
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {selectedTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full flex items-center gap-1"
+                  >
+                    {tag}
+                    <button
+                      onClick={() => removeTag(tag)}
+                      className="hover:bg-blue-200 rounded-full p-0.5"
+                      title={`「${tag}」を削除`}
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Popular Tags for Quick Selection */}
+          <div className="bg-white p-4 rounded-lg shadow-sm">
+            <div className="flex items-center gap-2 mb-3">
+              <Tag className="w-4 h-4 text-gray-600" />
+              <span className="text-sm font-medium text-gray-700">人気のタグで絞り込み:</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {allTags.slice(0, 15).map((tagInfo) => (
+                <button
+                  key={tagInfo.name}
+                  onClick={() => addTag(tagInfo.name)}
+                  disabled={selectedTags.includes(tagInfo.name)}
+                  className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                    selectedTags.includes(tagInfo.name)
+                      ? "bg-blue-100 text-blue-800 cursor-not-allowed opacity-50"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                  title={`「${tagInfo.name}」で絞り込み (${tagInfo.count}件)`}
+                >
+                  {tagInfo.name} ({tagInfo.count})
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* News Grid */}
@@ -114,8 +232,29 @@ export default function ArticleList({ allPosts }: Props) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">この条件に一致する記事はありません。</p>
+          <div className="text-center py-12 bg-white rounded-lg shadow-md">
+            <Tag className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <p className="text-gray-600 text-lg mb-2">この条件に一致する記事はありません。</p>
+            {(selectedTags.length > 0 || activeCategory !== "すべて") && (
+              <div className="text-sm text-gray-500">
+                <p>検索条件:</p>
+                {activeCategory !== "すべて" && (
+                  <p>カテゴリ: {activeCategory}</p>
+                )}
+                {selectedTags.length > 0 && (
+                  <p>タグ: {selectedTags.join(", ")}</p>
+                )}
+                <button
+                  onClick={() => {
+                    setActiveCategory("すべて")
+                    clearAllTags()
+                  }}
+                  className="mt-2 text-blue-600 hover:text-blue-800 underline"
+                >
+                  すべての条件をリセット
+                </button>
+              </div>
+            )}
           </div>
         )}
 

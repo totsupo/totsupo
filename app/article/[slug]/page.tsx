@@ -6,6 +6,7 @@ import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
 import NewsCard from "@/src/components/NewsCard"
 import { getAllNews, getNewsBySlug } from "@/src/lib/useAllNews"
+import { tagToSlug } from "@/src/lib/tagUtils.client"
 import type { NewsItem } from "@/src/types/news"
 import { notFound } from "next/navigation"
 import ShareButton from "./ShareButton"
@@ -143,12 +144,14 @@ export default function ArticleDetailPage({ params }: Props) {
               <div className="flex items-center flex-wrap gap-2">
                 <Tag className="w-4 h-4 text-gray-500" />
                 {news.tags.map((tag) => (
-                  <span
+                  <Link
                     key={tag}
-                    className="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
+                    href={`/tag/${tagToSlug(tag)}`}
+                    className="bg-gray-100 text-gray-800 hover:bg-blue-100 hover:text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded transition-colors duration-200"
+                    title={`「${tag}」の記事を見る`}
                   >
                     {tag}
-                  </span>
+                  </Link>
                 ))}
               </div>
             </div>

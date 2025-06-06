@@ -1,4 +1,5 @@
 import { getAllNews } from "@/src/lib/useAllNews"
+import { getAllTags } from "@/src/lib/tagUtils"
 import { Suspense } from "react"
 import ArticleList from './ArticleList'
 
@@ -14,10 +15,11 @@ export const metadata = {
 
 export default function ArticlePage() {
   const allPosts = getAllNews()
+  const allTags = getAllTags()
   
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ArticleList allPosts={allPosts} />
+      <ArticleList allPosts={allPosts} allTags={allTags} />
     </Suspense>
   )
 }
