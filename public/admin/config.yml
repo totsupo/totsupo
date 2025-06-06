@@ -29,14 +29,12 @@ collections:
         widget: select
         options:
           - { label: "街ネタ", value: "街ネタ" }
+          - { label: "開店", value: "開店" }
+          - { label: "移転", value: "移転" }
           - { label: "イベント", value: "イベント" }
-          - { label: "グルメ", value: "グルメ" }
-          - { label: "お店情報", value: "お店情報" }
-          - { label: "生活情報", value: "生活情報" }
+          - { label: "閉店", value: "閉店" }
           - { label: "子育て", value: "子育て" }
-          - { label: "教育", value: "教育" }
-          - { label: "交通", value: "交通" }
-          - { label: "その他", value: "その他" }
+          - { label: "戸塚のどか探訪", value: "戸塚のどか探訪" }
       - { name: image,   label: サムネイル, widget: image }
       - { name: author,  label: 編集者, required: false }
       - name: tags
