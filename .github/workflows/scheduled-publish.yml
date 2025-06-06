@@ -1,0 +1,73 @@
+name: Scheduled Publish
+
+on:
+  schedule:
+    # 毎時0分と30分に実行（日本時間考慮）
+    - cron: '0,30 * * * *'
+  workflow_dispatch: # 手動実行も可能
+
+jobs:
+  check-scheduled-posts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for scheduled posts
+        run: |
+          echo "Checking for scheduled posts that should be published..."
+          # 予約投稿の記事があるかチェックして、公開日が過ぎていればstatusを更新
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const matter = require('gray-matter');
+          
+          const newsDir = path.join(process.cwd(), 'src/content/news');
+          const files = fs.readdirSync(newsDir).filter(f => f.endsWith('.md'));
+          
+          let updated = false;
+          
+          files.forEach(filename => {
+            const filePath = path.join(newsDir, filename);
+            const fileContent = fs.readFileSync(filePath, 'utf8');
+            const { data, content } = matter(fileContent);
+            
+            if (data.status === 'scheduled') {
+              const now = new Date();
+              const publishDate = new Date(data.date);
+              
+              if (publishDate <= now) {
+                console.log(\`Publishing scheduled post: \${data.title}\`);
+                data.status = 'published';
+                
+                const newContent = matter.stringify(content, data);
+                fs.writeFileSync(filePath, newContent);
+                updated = true;
+              }
+            }
+          });
+          
+          process.exit(updated ? 0 : 1);
+          "
+
+      - name: Commit and push changes
+        if: success()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff --staged --quiet || (
+            git commit -m "📅 Auto-publish scheduled posts" &&
+            git push
+          )

@@ -3,6 +3,7 @@ export type NewsItem = {
   title: string
   excerpt: string
   date: string
+  status?: 'draft' | 'scheduled' | 'published'
   category: string
   image: string
   author?: string

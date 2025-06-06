@@ -24,6 +24,14 @@ collections:
       - { name: slug,    label: URL Slug, hint: "日付-slug形式で入力（例: 20250615-new-restaurant-opens）。他の記事との重複を避けるため、公開日付を含めてください。", pattern: ['^[0-9]{8}-[a-zA-Z0-9\-_]+$', '日付8桁-英数字の形式で入力してください（例: 20250615-slug-name）'] }
       - { name: excerpt, label: 概要, widget: text }
       - { name: date,    label: 公開日, widget: datetime }
+      - name: status
+        label: 公開ステータス
+        widget: select
+        default: "draft"
+        options:
+          - { label: "下書き", value: "draft" }
+          - { label: "予約投稿", value: "scheduled" }
+          - { label: "公開中", value: "published" }
       - name: category
         label: カテゴリ
         widget: select

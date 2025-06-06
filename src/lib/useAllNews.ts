@@ -67,6 +67,15 @@ export function getAllNews(): NewsItem[] {
         ...(data as Omit<NewsItem, "slug" | "content">)
       }
     })
+    .filter(article => {
+      // Filter out drafts and scheduled posts (future dates)
+      const now = new Date()
+      const articleDate = new Date(article.date)
+      const status = article.status || 'published' // Default to published for backward compatibility
+      
+      // Show only published articles with dates in the past or present
+      return status === 'published' && articleDate <= now
+    })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     
   return allNews
