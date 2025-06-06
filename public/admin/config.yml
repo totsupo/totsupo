@@ -24,7 +24,17 @@ collections:
       - { name: slug,    label: URL Slug, hint: "日付-slug形式で入力（例: 20250615-new-restaurant-opens）。他の記事との重複を避けるため、公開日付を含めてください。", pattern: ['^[0-9]{8}-[a-zA-Z0-9\-_]+$', '日付8桁-英数字の形式で入力してください（例: 20250615-slug-name）'] }
       - { name: excerpt, label: 概要, widget: text }
       - { name: date,    label: 公開日, widget: datetime }
-      - { name: category,label: カテゴリ }
+      - name: category
+        label: カテゴリ
+        widget: select
+        options:
+          - { label: "街ネタ", value: "街ネタ" }
+          - { label: "開店", value: "開店" }
+          - { label: "移転", value: "移転" }
+          - { label: "イベント", value: "イベント" }
+          - { label: "閉店", value: "閉店" }
+          - { label: "子育て", value: "子育て" }
+          - { label: "戸塚のどか探訪", value: "戸塚のどか探訪" }
       - { name: image,   label: サムネイル, widget: image }
       - { name: author,  label: 編集者, required: false }
       - name: tags
@@ -37,3 +47,19 @@ collections:
           name: tag
           widget: string
       - { name: body,    label: 本文, widget: markdown }
+  
+  - name: categories
+    label: カテゴリ管理
+    folder: "src/content/categories"
+    format: "frontmatter"
+    create: true
+    identifier_field: name
+    slug: "{{slug}}"
+    summary: "{{name}}"
+    editor:
+      preview: false
+    fields:
+      - { name: name, label: カテゴリ名, widget: string }
+      - { name: slug, label: URL Slug, widget: string, pattern: ['^[a-zA-Z0-9\-_]+$', 'URLに使用可能な文字のみ'] }
+      - { name: description, label: 説明, widget: text, required: false }
+      - { name: order, label: 表示順, widget: number, default: 0, hint: "小さい数字ほど上位に表示" }
