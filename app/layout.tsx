@@ -1,13 +1,20 @@
 import { Inter } from 'next/font/google'
+import { Metadata } from 'next'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
 import '@/src/index.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+export const metadata: Metadata = {
   title: '戸塚ぽーたる - 横浜市戸塚区の魅力を発信するローカルメディア',
   description: '戸塚ぽーたるは横浜市戸塚区の最新記事、イベント情報、おすすめスポットなどを発信するローカルメディアです。',
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
+  manifest: '/site.webmanifest',
+  themeColor: '#2563eb',
   openGraph: {
     title: '戸塚ぽーたる - 横浜市戸塚区の魅力を発信するローカルメディア',
     description: '戸塚ぽーたるは横浜市戸塚区の最新記事、イベント情報、おすすめスポットなどを発信するローカルメディアです。',
