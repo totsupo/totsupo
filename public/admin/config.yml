@@ -1,8 +1,8 @@
 backend:
   name: github
   repo: totsupo/totsupo
-  branch: feature/nextjs-migration
-  base_url: https://totsupo-next.pages.dev
+  branch: main
+  base_url: https://totsupo.pages.dev
   auth_endpoint: /api/auth
   squash_merges: true
 
