@@ -1,6 +1,7 @@
+'use client'
+
 import { Copy, Info, Mail, MessageCircleMore, Send, createLucideIcon } from "lucide-react"
 import { useCallback, useMemo } from "react"
-import SEOHead from "../components/SEOHead"
 
 const XIcon = createLucideIcon("X", [
   [
@@ -14,7 +15,7 @@ const XIcon = createLucideIcon("X", [
   ],
 ])
 
-const ContactPage = () => {
+export default function ContactForm() {
   /** ───── Email を動的に組み立ててスパム収集を回避 ───── */
   const { mail, mailto } = useMemo(() => {
     const user = "totsuka.portal"
@@ -32,13 +33,7 @@ const ContactPage = () => {
   }, [mail])
 
   return (
-    <>
-      <SEOHead
-        title="お問い合わせ | 戸塚ぽーたる"
-        description="戸塚ぽーたるへのお問い合わせはこちらから。情報提供や取材依頼なども歓迎しています。"
-        url="https://totsupo.pages.dev/contact"
-      />
-      <div className="bg-gray-50 py-12">
+    <div className="bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -141,9 +136,6 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-      </div>
-    </>
+    </div>
   )
 }
-
-export default ContactPage

@@ -1,78 +1,92 @@
 import { ArrowLeft, Calendar, Share2, Tag, User } from "lucide-react"
-import { useCallback, useMemo, useState } from "react"
+import { Metadata } from "next"
+import Link from "next/link"
 import ReactMarkdown from "react-markdown"
-import { Link, useParams } from "react-router-dom"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
-import NewsCard from "../components/NewsCard"
-import SEOHead from "../components/SEOHead"
-import { useAllNews } from "../lib/useAllNews.ts"
-import type { NewsItem } from "../types/news"
+import NewsCard from "@/src/components/NewsCard"
+import { getAllNews, getNewsBySlug } from "@/src/lib/useAllNews"
+import type { NewsItem } from "@/src/types/news"
+import { notFound } from "next/navigation"
+import ShareButton from "./ShareButton"
 
-const NewsDetailPage = () => {
-  const { slug = "" } = useParams<{ slug: string }>()
-  const [copied, setCopied] = useState(false)
-  const posts = useMemo(useAllNews, [])
-  const news = posts.find((p) => p.slug === slug)
-  const fallback = "/images/default-thumbnail.png"
+interface Props {
+  params: { slug: string }
+}
 
+// Generate static params for all news articles
+export async function generateStaticParams() {
+  const allNews = getAllNews()
+  
+  return allNews.map((news) => ({
+    slug: news.slug,
+  }))
+}
+
+// Generate metadata for each article (for OGP)
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const news = getNewsBySlug(params.slug)
+  
   if (!news) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">記事が見つかりませんでした</h1>
-          <Link
-            to="/article"
-            className="text-blue-600 hover:underline flex items-center justify-center"
-          >
-            <ArrowLeft className="w-4 h-4 mr-1" />
-            記事一覧に戻る
-          </Link>
-        </div>
-      </div>
-    )
+    return {
+      title: '記事が見つかりません | 戸塚ぽーたる'
+    }
   }
 
+  return {
+    title: `${news.title} | 戸塚ぽーたる`,
+    description: news.excerpt,
+    openGraph: {
+      title: `${news.title} | 戸塚ぽーたる`,
+      description: news.excerpt,
+      url: `https://totsupo.pages.dev/article/${news.slug}`,
+      type: 'article',
+      publishedTime: new Date(news.date).toISOString(),
+      modifiedTime: new Date(news.date).toISOString(),
+      section: news.category,
+      authors: [news.author || '戸塚ぽーたる編集部'],
+      tags: news.tags,
+      images: [
+        {
+          url: news.image ? `https://totsupo.pages.dev${news.image}` : 'https://totsupo.pages.dev/favicon.png',
+          width: 1200,
+          height: 630,
+          alt: news.title,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${news.title} | 戸塚ぽーたる`,
+      description: news.excerpt,
+      images: [news.image ? `https://totsupo.pages.dev${news.image}` : 'https://totsupo.pages.dev/favicon.png'],
+    },
+  }
+}
+
+export default function ArticleDetailPage({ params }: Props) {
+  const news = getNewsBySlug(params.slug)
+  
+  if (!news) {
+    notFound()
+  }
+
+  const allNews = getAllNews()
   const relatedArticles: NewsItem[] = news.related?.length
-    ? posts.filter((p) => news.related!.includes(p.slug))
-    : posts.filter((p) => p.category === news.category && p.slug !== news.slug).slice(0, 3)
-
-  const handleCopyUrl = useCallback(async () => {
-    const url = window.location.href
-
-    try {
-      await navigator.clipboard.writeText(url)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch {
-      alert(`コピーできませんでした…\n${url}`)
-    }
-  }, [])
+    ? allNews.filter((p) => news.related!.includes(p.slug))
+    : allNews.filter((p) => p.category === news.category && p.slug !== news.slug).slice(0, 3)
 
   return (
-    <>
-      <SEOHead
-        title={`${news.title} | 戸塚ぽーたる`}
-        description={news.excerpt}
-        image={news.image ? `https://totsupo.pages.dev${news.image}` : 'https://totsupo.pages.dev/favicon.png'}
-        url={`https://totsupo.pages.dev/article/${news.slug}`}
-        type="article"
-        publishedTime={new Date(news.date).toISOString()}
-        modifiedTime={new Date(news.date).toISOString()}
-        section={news.category}
-        tags={news.tags}
-        author={news.author || '戸塚ぽーたる編集部'}
-      />
-      <div className="bg-gray-50 py-12">
+    <div className="bg-gray-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
         {/* Breadcrumb */}
         <div className="mb-6">
           <nav className="text-sm text-gray-500">
-            <Link to="/" className="hover:text-blue-600">
+            <Link href="/" className="hover:text-blue-600">
               ホーム
             </Link>
             <span className="mx-2">/</span>
-            <Link to="/article" className="hover:text-blue-600">
+            <Link href="/article" className="hover:text-blue-600">
               記事
             </Link>
             <span className="mx-2">/</span>
@@ -111,22 +125,7 @@ const NewsDetailPage = () => {
             </div>
 
             {/* Social Share */}
-            <div className="flex items-center space-x-4">
-              <button
-                type="button"
-                onClick={handleCopyUrl}
-                className="flex items-center text-gray-500 hover:text-blue-600"
-              >
-                <Share2 className="w-5 h-5 mr-1" />
-                <span className="text-sm">URL をコピー</span>
-              </button>
-
-              {copied && (
-                <span className="text-xs text-green-600 transition-opacity duration-300">
-                  コピーしました！
-                </span>
-              )}
-            </div>
+            <ShareButton />
           </div>
         </div>
 
@@ -170,15 +169,12 @@ const NewsDetailPage = () => {
 
         {/* Back to News */}
         <div className="mt-8 text-center">
-          <Link to="/article" className="inline-flex items-center text-blue-600 hover:underline">
+          <Link href="/article" className="inline-flex items-center text-blue-600 hover:underline">
             <ArrowLeft className="w-4 h-4 mr-1" />
             記事一覧に戻る
           </Link>
         </div>
       </div>
-      </div>
-    </>
+    </div>
   )
 }
-
-export default NewsDetailPage

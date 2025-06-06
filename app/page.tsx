@@ -1,24 +1,26 @@
 import { Mail, Newspaper } from "lucide-react"
-import { Link } from "react-router-dom"
-import NewsCard from "../components/NewsCard"
-import SEOHead from "../components/SEOHead"
-import { useAllNews } from "../lib/useAllNews"
-import { useMemo } from "react"
-import portalImg from "../assets/totsuka-portal.jpg"
+import Link from "next/link"
+import NewsCard from "@/src/components/NewsCard"
+import { getAllNews } from "@/src/lib/useAllNews"
+import portalImg from "@/src/assets/totsuka-portal.jpg"
 
-const HomePage = () => {
-  const allNews = useAllNews()
-  const news = useMemo(() => allNews.slice(0, 4), [allNews])
+export const metadata = {
+  title: '戸塚ぽーたる - 横浜市戸塚区の魅力を発信するローカルメディア',
+  description: '戸塚ぽーたるは横浜市戸塚区の最新記事、イベント情報、おすすめスポットなどを発信するローカルメディアです。',
+}
+
+export default function HomePage() {
+  const allNews = getAllNews()
+  const news = allNews.slice(0, 4)
+  
   return (
-    <>
-      <SEOHead />
-      <div>
+    <div>
       {/* Hero Section */}
       <div className="relative">
         <div
           className="w-full h-[60vh] bg-cover bg-center"
           style={{
-            backgroundImage: `url(${portalImg})`,
+            backgroundImage: `url(${portalImg.src})`,
           }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -42,7 +44,7 @@ const HomePage = () => {
           ))}
         </div>
         <div className="text-center mt-8">
-          <Link to="/article">
+          <Link href="/article">
             <button
               type="button"
               className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-300"
@@ -70,9 +72,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      </div>
-    </>
+    </div>
   )
 }
-
-export default HomePage

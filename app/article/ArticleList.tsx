@@ -1,13 +1,17 @@
-import { useState, useEffect, useMemo } from "react"
-import { useSearchParams } from "react-router-dom"
-import NewsCard from "../components/NewsCard"
-import SEOHead from "../components/SEOHead"
-import { useAllNews } from "../lib/useAllNews"
-import type { NewsItem } from "../types/news"
+'use client'
 
-const NewsPage = () => {
-  const allPosts = useMemo(useAllNews, [])
-  const [searchParams, setSearchParams] = useSearchParams()
+import { useState, useEffect, useMemo } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
+import NewsCard from "@/src/components/NewsCard"
+import type { NewsItem } from "@/src/types/news"
+
+interface Props {
+  allPosts: NewsItem[]
+}
+
+export default function ArticleList({ allPosts }: Props) {
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const [filteredNews, setFilteredNews] = useState<NewsItem[]>(allPosts)
 
   // URLパラメータから初期値を取得
@@ -60,7 +64,7 @@ const NewsPage = () => {
     if (page > 1) {
       params.set("page", page.toString())
     }
-    setSearchParams(params)
+    router.push(`/article?${params.toString()}`)
   }
 
   // Change page
@@ -71,13 +75,7 @@ const NewsPage = () => {
   }
 
   return (
-    <>
-      <SEOHead
-        title="記事一覧 | 戸塚ぽーたる"
-        description="戸塚区の最新記事一覧。地域の出来事、イベント情報、生活に役立つ情報など、戸塚区の「今」を知ることができます。"
-        url="https://totsupo.pages.dev/article"
-      />
-      <div className="bg-gray-50 py-12">
+    <div className="bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4">
         {/* Page Header */}
         <div className="text-center mb-12">
@@ -180,9 +178,6 @@ const NewsPage = () => {
           </div>
         )}
       </div>
-      </div>
-    </>
+    </div>
   )
 }
-
-export default NewsPage
