@@ -33,33 +33,57 @@ function generateShortSlug(filename: string): string {
 const slugToFilenameCache = new Map<string, string>()
 const filenameToSlugCache = new Map<string, string>()
 
+// Recursively find all index.md files in the news directory
+function findNewsFiles(dir: string, basePath: string = ''): string[] {
+  const items = fs.readdirSync(dir, { withFileTypes: true })
+  const files: string[] = []
+  
+  for (const item of items) {
+    const fullPath = path.join(dir, item.name)
+    const relativePath = path.join(basePath, item.name)
+    
+    if (item.isDirectory()) {
+      files.push(...findNewsFiles(fullPath, relativePath))
+    } else if (item.name === 'index.md') {
+      files.push(basePath)
+    }
+  }
+  
+  return files
+}
+
 // Server-side function for Next.js
 export function getAllNews(): NewsItem[] {
   const newsDirectory = path.join(process.cwd(), 'src/content/news')
-  const filenames = fs.readdirSync(newsDirectory)
+  const newsFiles = findNewsFiles(newsDirectory)
   
-  const allNews = filenames
-    .filter(name => name.endsWith('.md'))
-    .map(filename => {
-      const filePath = path.join(newsDirectory, filename)
+  const allNews = newsFiles
+    .map(relativePath => {
+      const filePath = path.join(newsDirectory, relativePath, 'index.md')
       const fileContents = fs.readFileSync(filePath, 'utf8')
       const { data, content } = matter(fileContents)
       
       // Generate slug - prefer frontmatter slug if available
-      const filenameWithoutExt = filename.replace(/\.md$/, '')
-      let slug = filenameToSlugCache.get(filenameWithoutExt)
+      let slug: string
       
-      if (!slug) {
-        // Use frontmatter slug if available and valid
-        if (data.slug && typeof data.slug === 'string' && /^[a-zA-Z0-9\-_]+$/.test(data.slug)) {
-          // Use the slug as-is without date prefix for frontmatter slugs
-          slug = data.slug
+      if (data.slug && typeof data.slug === 'string' && /^[a-zA-Z0-9\-_]+$/.test(data.slug)) {
+        // Use frontmatter slug as-is (this preserves the English slugs)
+        slug = data.slug
+      } else {
+        // Fallback: Generate from directory path if no frontmatter slug
+        const pathParts = relativePath.split(path.sep)
+        if (pathParts.length >= 3) {
+          const [year, month, articleDir] = pathParts
+          // Extract just the title part after the day prefix
+          const titlePart = articleDir.replace(/^\d{2}-/, '')
+          slug = generateShortSlug(`${year}${month}${articleDir}`)
         } else {
-          slug = generateShortSlug(filenameWithoutExt)
+          return null
         }
-        filenameToSlugCache.set(filenameWithoutExt, slug)
-        slugToFilenameCache.set(slug, filenameWithoutExt)
       }
+      
+      filenameToSlugCache.set(relativePath, slug)
+      slugToFilenameCache.set(slug, relativePath)
       
       return {
         slug,
@@ -67,6 +91,7 @@ export function getAllNews(): NewsItem[] {
         ...(data as Omit<NewsItem, "slug" | "content">)
       }
     })
+    .filter((item): item is NewsItem => item !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     
   return allNews
@@ -80,18 +105,18 @@ export function getNewsBySlug(slug: string): NewsItem | null {
       getAllNews() // This will populate the cache
     }
     
-    // Find the original filename using the short slug
-    const originalFilename = slugToFilenameCache.get(slug)
-    if (!originalFilename) {
+    // Find the original path using the slug
+    const relativePath = slugToFilenameCache.get(slug)
+    if (!relativePath) {
       return null
     }
     
-    const filePath = path.join(process.cwd(), 'src/content/news', `${originalFilename}.md`)
+    const filePath = path.join(process.cwd(), 'src/content/news', relativePath, 'index.md')
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(fileContents)
     
     return {
-      slug, // Use the short slug
+      slug,
       content,
       ...(data as Omit<NewsItem, "slug" | "content">)
     }

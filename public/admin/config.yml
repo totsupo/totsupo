@@ -16,12 +16,15 @@ collections:
   - name: news
     label: 記事
     folder: "src/content/news"
+    path: "{{year}}/{{month}}/{{day}}-{{slug}}/index"
+    media_folder: "images"
+    public_folder: "/images"
     format: "frontmatter"
     create: true
-    slug: "{{year}}{{month}}{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
       - { name: title,   label: タイトル }
-      - { name: slug,    label: URL Slug, hint: "日付-slug形式で入力（例: 20250615-new-restaurant-opens）。他の記事との重複を避けるため、公開日付を含めてください。", pattern: ['^[0-9]{8}-[a-zA-Z0-9\-_]+$', '日付8桁-英数字の形式で入力してください（例: 20250615-slug-name）'] }
+      - { name: slug,    label: URL Slug, hint: "URLに使用される識別子（例: new-restaurant-opens）", pattern: ['^[a-zA-Z0-9\-_]+$', 'URLに使用可能な文字のみ使用してください'] }
       - { name: excerpt, label: 概要, widget: text }
       - { name: date,    label: 公開日, widget: datetime }
       - name: category
