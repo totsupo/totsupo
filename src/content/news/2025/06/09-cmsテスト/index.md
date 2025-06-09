@@ -9,4 +9,4 @@ author: 編集部
 ---
 CMSテスト
 
-![]()
+![](/images/img_9908.jpg)
