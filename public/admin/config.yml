@@ -18,7 +18,7 @@ collections:
     folder: "src/content/news"
     path: "{{year}}/{{month}}/{{day}}-{{slug}}/index"
     media_folder: "images"
-    public_folder: "./images"
+    public_folder: "/images"
     format: "frontmatter"
     create: true
     slug: "{{slug}}"
