@@ -29,70 +29,37 @@ function generateShortSlug(filename: string): string {
   return datePrefix ? `${datePrefix}-${hash}` : hash
 }
 
-// Recursively find all index.md files in the news directory
-function findNewsFiles(dir: string, basePath: string = ''): string[] {
-  const items = fs.readdirSync(dir, { withFileTypes: true })
-  const files: string[] = []
-  
-  for (const item of items) {
-    const fullPath = path.join(dir, item.name)
-    const relativePath = path.join(basePath, item.name)
-    
-    if (item.isDirectory()) {
-      files.push(...findNewsFiles(fullPath, relativePath))
-    } else if (item.name === 'index.md') {
-      files.push(basePath)
-    }
-  }
-  
-  return files
-}
+// Create a cache for filename to slug mapping
+const slugToFilenameCache = new Map<string, string>()
+const filenameToSlugCache = new Map<string, string>()
 
 // Server-side function for Next.js
 export function getAllNews(): NewsItem[] {
   const newsDirectory = path.join(process.cwd(), 'src/content/news')
-  const newsFiles = findNewsFiles(newsDirectory)
+  const filenames = fs.readdirSync(newsDirectory)
   
-  // Create local caches for this function call
-  const slugToFilenameCache = new Map<string, string>()
-  const filenameToSlugCache = new Map<string, string>()
-  
-  const allNews = newsFiles
-    .map(relativePath => {
-      const filePath = path.join(newsDirectory, relativePath, 'index.md')
+  const allNews = filenames
+    .filter(name => name.endsWith('.md'))
+    .map(filename => {
+      const filePath = path.join(newsDirectory, filename)
       const fileContents = fs.readFileSync(filePath, 'utf8')
       const { data, content } = matter(fileContents)
       
       // Generate slug - prefer frontmatter slug if available
-      let slug: string
+      const filenameWithoutExt = filename.replace(/\.md$/, '')
+      let slug = filenameToSlugCache.get(filenameWithoutExt)
       
-      if (data.slug && typeof data.slug === 'string' && /^[a-zA-Z0-9\-_]+$/.test(data.slug)) {
-        // Use frontmatter slug as-is (this preserves the English slugs)
-        slug = data.slug
-        
-        // Check for slug collision and handle it
-        if (slugToFilenameCache.has(slug)) {
-          console.warn(`Slug collision detected: "${slug}" already exists. Adding date suffix.`)
-          // Add date suffix to make slug unique
-          const date = new Date(data.date)
-          const dateStr = date.toISOString().slice(0, 10).replace(/-/g, '')
-          slug = `${slug}-${dateStr}`
-        }
-      } else {
-        // Fallback: Generate from directory path if no frontmatter slug
-        const pathParts = relativePath.split(path.sep)
-        if (pathParts.length >= 3) {
-          const [year, month, articleDir] = pathParts
-          // Extract just the title part after the day prefix
-          const titlePart = articleDir.replace(/^\d{2}-/, '')
-          slug = generateShortSlug(`${year}${month}${articleDir}`)
+      if (!slug) {
+        // Use frontmatter slug if available and valid
+        if (data.slug && typeof data.slug === 'string' && /^[a-zA-Z0-9\-_]+$/.test(data.slug)) {
+          // Use the slug as-is without date prefix for frontmatter slugs
+          slug = data.slug
         } else {
-          return null
+          slug = generateShortSlug(filenameWithoutExt)
         }
+        filenameToSlugCache.set(filenameWithoutExt, slug)
+        slugToFilenameCache.set(slug, filenameWithoutExt)
       }
-      
-      filenameToSlugCache.set(relativePath, slug)
-      slugToFilenameCache.set(slug, relativePath)
       
       return {
         slug,
@@ -100,7 +67,6 @@ export function getAllNews(): NewsItem[] {
         ...(data as Omit<NewsItem, "slug" | "content">)
       }
     })
-    .filter((item): item is NewsItem => item !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     
   return allNews
@@ -109,11 +75,26 @@ export function getAllNews(): NewsItem[] {
 // Server-side function to get single news item
 export function getNewsBySlug(slug: string): NewsItem | null {
   try {
-    // Get all news to find the matching slug
-    const allNews = getAllNews()
-    const article = allNews.find(news => news.slug === slug)
+    // Rebuild the cache if needed
+    if (slugToFilenameCache.size === 0) {
+      getAllNews() // This will populate the cache
+    }
     
-    return article || null
+    // Find the original filename using the short slug
+    const originalFilename = slugToFilenameCache.get(slug)
+    if (!originalFilename) {
+      return null
+    }
+    
+    const filePath = path.join(process.cwd(), 'src/content/news', `${originalFilename}.md`)
+    const fileContents = fs.readFileSync(filePath, 'utf8')
+    const { data, content } = matter(fileContents)
+    
+    return {
+      slug, // Use the short slug
+      content,
+      ...(data as Omit<NewsItem, "slug" | "content">)
+    }
   } catch (error) {
     return null
   }
