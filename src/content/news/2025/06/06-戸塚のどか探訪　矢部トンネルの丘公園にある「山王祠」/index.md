@@ -4,7 +4,7 @@ slug: nodoka-sannohokora
 excerpt: 戸塚駅東口から徒歩５分くらい、矢部トンネルの丘公園にある「山王祠」を見てきました。
 date: 2025-06-06T22:55:00.000Z
 category: 街ネタ
-image: ./images/20250606_shrine_thumbnail.jpg
+image: /images/20250606_shrine_thumbnail.jpg
 author: 編集部
 tags:
   - 矢部トンネルの丘公園
@@ -21,15 +21,15 @@ tags:
 
 その名も**山王祠**。
 
-![山王祠](./images/20250606_shrine_front.jpg)
+![山王祠](/images/20250606_shrine_front.jpg)
 
 場所をイメージしにくい方は、とつか地下道の真上というと伝わりやすいでしょうか。
 
-![山王祠はとつか地下道の真上にある](./images/20250606_shrine_place.jpg)
+![山王祠はとつか地下道の真上にある](/images/20250606_shrine_place.jpg)
 
 横に説明書きがありました。
 
-![山王祠の説明書き](./images/20250606_shrine_text.jpg)
+![山王祠の説明書き](/images/20250606_shrine_text.jpg)
 
 こんな風に書いてます。
 
@@ -43,7 +43,7 @@ tags:
 
 ところで、横に回り込んでみるとうっすら何か書いてあります。
 
-![山王祠の側面。何か書いてある。](./images/20250606_shrine_side.jpg)
+![山王祠の側面。何か書いてある。](/images/20250606_shrine_side.jpg)
 
 漢字で何か書いてあるのはわかりますが、それ以上のことはよくわからず…。きっと庚申塔のこととかがここに書いてあるんでしょう。歴史の重みって感じですね、、
 
@@ -51,7 +51,7 @@ tags:
 
 横にある手水鉢にはもっとはっきり字が書いてます。
 
-![山王祠の手水鉢](./images/20250606_shrine_age.jpg)
+![山王祠の手水鉢](/images/20250606_shrine_age.jpg)
 
 安政なんとかって書いてますね。安政年間は1855年から1860年。いやあ、年季入ってますね、、！笑
 

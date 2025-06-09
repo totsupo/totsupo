@@ -3,7 +3,7 @@ title: 横浜ベイブルーイングのビールが金賞受賞！
 excerpt: 戸塚区の八坂神社で親子向けフリースペースをやってるらしい
 date: 2025-05-23
 category: 街ネタ
-image: ./images/20250523-beer.jpg
+image: /images/20250523-beer.jpg
 author: 編集部
 tags:
   - ビール
@@ -22,7 +22,7 @@ https://www.facebook.com/YokohamaBayBrewing/?locale=ja_JP
 
 早速お店にお邪魔して、銀賞を受賞したゆずヴァイスを注文してみました。
 
-<Img src="./images/20250523-beer.jpg"
+<Img src="/images/20250523-beer.jpg"
      alt="横浜ベイブルーイングのゆずヴァイス"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

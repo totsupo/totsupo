@@ -3,7 +3,7 @@ title: 戸塚駅すぐ、電車を見守る2頭のヤギ。「メイちゃん」
 excerpt: 戸塚駅東口近くで暮らすヤギ姉妹「メイちゃん」と「ゆいちゃん」。駅ホームからも見える2頭の素顔に迫ります。
 date: 2025-05-10T21:22:00.000Z
 category: 街ネタ
-image: ./images/IMG_9814.jpg
+image: /images/IMG_9814.jpg
 author: 編集部
 tags:
   - 動物
@@ -13,7 +13,7 @@ related:
 ---
 戸塚駅の東口を出て、線路沿いを少し歩いた先。  
 ふと足を止めてみると、目が合うのは…**ヤギ**。  
-<img src="./images/IMG_9814.jpg"
+<img src="/images/IMG_9814.jpg"
      alt="メイちゃんとゆいちゃん"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 白くて立派なヒゲの「メイちゃん」と、その妹分の「ゆいちゃん」。
@@ -23,7 +23,7 @@ related:
 
 ## メイちゃんとゆいちゃん
 
-<img src="./images/IMG_9815.jpg"
+<img src="/images/IMG_9815.jpg"
      alt="メイちゃんとゆいちゃん情報"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

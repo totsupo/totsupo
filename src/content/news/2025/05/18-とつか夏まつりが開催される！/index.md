@@ -3,7 +3,7 @@ title: とつか夏まつりが開催される！
 excerpt: 2025年の「とつか夏まつり」は7月12日(土)開催予定
 date: 2025-05-18
 category: 街ネタ
-image: ./images/20250518-totsukanatsumatsuri.jpg
+image: /images/20250518-totsukanatsumatsuri.jpg
 author: 編集部
 tags:
   - 夏祭り
@@ -13,7 +13,7 @@ related:
 300年以上の歴史を誇る戸塚の伝統行事「とつか夏まつり」が、**2025年7月12日(土)** に開催されます。
 伝統行事 **「お札まき」** は **7月14日(月)** に八坂神社で行われる予定です。
 
-<Img src="./images/20250518-totsukanatsumatsuri.jpg"
+<Img src="/images/20250518-totsukanatsumatsuri.jpg"
      alt="とつか夏まつり"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

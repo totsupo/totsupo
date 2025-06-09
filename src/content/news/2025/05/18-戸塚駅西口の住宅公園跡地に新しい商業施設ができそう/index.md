@@ -3,7 +3,7 @@ title: 戸塚駅西口の住宅公園跡地に新しい商業施設ができそ�
 excerpt: スーパー・ドラッグストア・クリニックモールが入る複合ビルが 2026 年 11 月オープン予定
 date: 2025-05-18
 category: 開店
-image: ./images/20250518-syogyoshisetsu.jpg
+image: /images/20250518-syogyoshisetsu.jpg
 author: 編集部
 tags:
   - 戸塚駅
@@ -14,7 +14,7 @@ related:
 駅西口（旧戸塚住宅公園跡地）で大型の商業施設が建設中です。  
 現地の建築計画看板によれば **2025 年 5 月着工 → 2026 年 11 月開業予定** とのこと。
 
-<Img src="./images/20250518-syogyoshisetsu.jpg"
+<Img src="/images/20250518-syogyoshisetsu.jpg"
      alt="戸塚駅西口の新しい商業施設"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

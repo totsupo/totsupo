@@ -3,7 +3,7 @@ title: 2年間の営業に幕――『亜細亜楼〜爺爺の「ワンタンと
 excerpt: 中華料理店『亜細亜楼〜爺爺の「ワンタンと豚バラの店」』が、2025年5月21日のランチ営業をもって閉店。
 date: 2025-05-10
 category: 閉店
-image: ./images/IMG_9819.jpg
+image: /images/IMG_9819.jpg
 author: 編集部
 tags:
   - 中華料理
@@ -14,7 +14,7 @@ tags:
 **2025年5月21日(水) ランチ営業** を最後に閉店することが Instagram で発表されていました。
 お店の入り口にも閉店のお知らせが掲示されています。
 
-<img src="./images/IMG_9820.jpg"
+<img src="/images/IMG_9820.jpg"
 alt="亜細亜楼 閉店のお知らせ"
 class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

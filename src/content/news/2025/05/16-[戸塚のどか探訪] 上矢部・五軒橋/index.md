@@ -3,7 +3,7 @@ title: 戸塚のどか探訪 上矢部・五軒橋
 excerpt: 戸塚のどか探訪 上矢部・五軒橋
 date: 2025-05-16
 category: 戸塚のどか探訪
-image: ./images/20250516-totsukanodokatanbou.jpg
+image: /images/20250516-totsukanodokatanbou.jpg
 author: 編集部
 tags:
   - 街ぶら
@@ -24,19 +24,19 @@ related:
 上矢部の街を阿久和川に沿ってさらに進むと、泉区との境界のすぐ近くに見えてくるのが**五軒橋**。
 今日の主役です。
 
-<img src="./images/20250516-totsukanodokatanbou.jpg"
+<img src="/images/20250516-totsukanodokatanbou.jpg"
      alt="五軒橋の風景"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 
 五軒橋から川の下流（戸塚駅方面）を見たときの景色はこんな感じ。
 
-<img src="./images/20250516-totsukanodokatanbou2.jpg"
+<img src="/images/20250516-totsukanodokatanbou2.jpg"
 alt="五軒橋の風景"
 class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 
 上流（泉区方面）を見たときの景色はこんな感じ。
 
-<img src="./images/20250516-totsukanodokatanbou3.jpg"
+<img src="/images/20250516-totsukanodokatanbou3.jpg"
 alt="五軒橋の風景"
 class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 
@@ -45,7 +45,7 @@ class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 
 ちなみにお散歩といえば、阿久和川沿いには結構きれいな遊歩道があります。
 
-<img src="./images/20250516-totsukanodokatanbou4.jpg"
+<img src="/images/20250516-totsukanodokatanbou4.jpg"
 alt="五軒橋の風景"
 class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

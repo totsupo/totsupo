@@ -3,7 +3,7 @@ title: 戸塚駅東口すぐのところに新しい歯科医院ができてる
 excerpt: 戸塚駅東口の大踏切跡の近くに、「こいで歯科」という歯医者さんが新しくできるみたい
 date: 2025-05-24
 category: 開店
-image: ./images/20250524-haisya2.jpg
+image: /images/20250524-haisya2.jpg
 author: 編集部
 tags:
   - 戸塚駅
@@ -22,7 +22,7 @@ related:
      alt="こいで歯科の外観"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 
-<Img src="./images/20250524-haisya2.jpg"
+<Img src="/images/20250524-haisya2.jpg"
      alt="こいで歯科の外観"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

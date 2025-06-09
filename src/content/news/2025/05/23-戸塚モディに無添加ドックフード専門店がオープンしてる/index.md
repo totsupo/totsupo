@@ -3,7 +3,7 @@ title: 戸塚モディに無添加ドッグフード専門店「Ruree」がオ�
 excerpt: 湘南発のドッグフード専門店 Ruree が 2025年5月23日に戸塚モディ2Fへ出店したみたい
 date: 2025-05-23
 category: 開店
-image: ./images/20250523-dogfoodshop.jpeg
+image: /images/20250523-dogfoodshop.jpeg
 author: 編集部
 tags:
   - 戸塚モディ
@@ -14,7 +14,7 @@ related:
 
 戸塚駅直結の商業施設 **戸塚モディ** 2F に、湘南発の **無添加ドッグフード専門店「Ruree（ルリー）」** がオープンしたようです。
 
-<img src="./images/20250523-dogfoodshop.jpeg"
+<img src="/images/20250523-dogfoodshop.jpeg"
      alt="Rureeの外観"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

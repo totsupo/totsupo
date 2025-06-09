@@ -4,7 +4,7 @@ slug: mister-donut-buffet
 excerpt: トツカーナモール3Fの「ミスタードーナツ　戸塚西口ショップ」でドーナツ食べ放題やってます！6/2～6/30の期間限定！
 date: 2025-06-04T21:54:00.000Z
 category: 街ネタ
-image: ./images/mister_doughnut.jpg
+image: /images/mister_doughnut.jpg
 author: 編集部
 tags:
   - トツカーナ
@@ -15,7 +15,7 @@ tags:
 
 [](https://www.misterdonut.jp/m_menu/set_menu/)
 
-![ミスタードーナツ戸塚西口ショップのドーナツビュッフェ](./images/mister_doughnut.jpg)
+![ミスタードーナツ戸塚西口ショップのドーナツビュッフェ](/images/mister_doughnut.jpg)
 
 
 料金は**大人（中学生以上）2,000円**、**3歳～小学生850円**（いずれも税込）。やっている店舗もやっていない店舗もあるみたいですが、戸塚周辺は結構充実してそうです。東戸塚とか中田とかでもやってます。詳細はこちら👉　[mister donut 「ドーナツビュッフェ」](<>)

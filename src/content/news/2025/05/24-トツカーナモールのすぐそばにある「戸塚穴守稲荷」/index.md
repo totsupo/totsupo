@@ -3,7 +3,7 @@ title: トツカーナモールのすぐそばにある「戸塚穴守稲荷」
 excerpt: トツカーナモールと戸塚区役所の間の道路に面したところにひっそりたたずむお社
 date: 2025-05-24
 category: 街ネタ
-image: ./images/20250524-inari.jpg
+image: /images/20250524-inari.jpg
 author: 編集部
 tags:
   - 戸塚駅
@@ -13,7 +13,7 @@ related:
 トツカーナモールと戸塚区役所の間の道路に面したところにひっそりたたずむお社。
 戸塚駅西口を使う人なら良く目にするんじゃないでしょうか。
 
-<Img src="./images/20250524-inari.jpg"
+<Img src="/images/20250524-inari.jpg"
      alt="戸塚穴守稲荷の外観"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

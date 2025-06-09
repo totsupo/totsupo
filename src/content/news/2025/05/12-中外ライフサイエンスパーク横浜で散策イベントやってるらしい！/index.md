@@ -3,7 +3,7 @@ title: 中外ライフサイエンスパーク横浜で散策イベントやっ�
 excerpt: 中外ライフサイエンスパーク横浜で散策イベントやってるらしい！
 date: 2025-05-12T21:22:00.000Z
 category: イベント
-image: ./images/20250512-chugaiseiyaku.jpg
+image: /images/20250512-chugaiseiyaku.jpg
 author: 編集部
 tags:
   - イベント
@@ -13,13 +13,13 @@ related:
 中外ライフサイエンスパークの緑道で散策イベントがやっているようです。
 名瀬谷戸の会会員の森林インストラクターの方が案内人になって、樹の花や草の花を観察できるみたいです。
 **定員が家族20組、先着順**とのことですので、興味のある方はしっかりマークしておきましょう！
-<img src="./images/20250512-chugaiseiyaku.jpg"
+<img src="/images/20250512-chugaiseiyaku.jpg"
 alt="中外ライフサイエンスパーク横浜"
 class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 
 中外ライフサイエンスパークの緑道、お散歩にとても良いですよね。癒される～
 筆者が今日訪れたときには、赤ちゃん連れやお年寄りまでいろんな方がお散歩を楽しんでました。のどかな雰囲気です。
-<img src="./images/20250512-chugaiseiyaku2.jpg"
+<img src="/images/20250512-chugaiseiyaku2.jpg"
 alt="中外ライフサイエンスパーク横浜"
 class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

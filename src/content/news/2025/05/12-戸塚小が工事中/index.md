@@ -3,7 +3,7 @@ title: 戸塚小が工事中
 excerpt: 戸塚小が工事中
 date: 2025-05-12T21:22:00.000Z
 category: 街ネタ
-image: ./images/20250512-1.jpg
+image: /images/20250512-1.jpg
 author: 編集部
 tags:
   - 戸塚小
@@ -14,12 +14,12 @@ related:
 旭町通商店街のところから見えるので、気になってる人も多いんじゃないでしょうか。
 
 今は体育館の解体工事をやっているみたいです。
-<img src="./images/20250512-1.jpg"
+<img src="/images/20250512-1.jpg"
 alt="戸塚小が工事中"
 class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 
 体育館の骨組みってこんな感じになってるんですね！
-<img src="./images/20250512-2.jpg"
+<img src="/images/20250512-2.jpg"
 alt="戸塚小が工事中"
 class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

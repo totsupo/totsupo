@@ -3,7 +3,7 @@ title: 戸塚駅西口すぐに英語塾「アールイーアカデミー」が�
 excerpt: 体験型英語教室アールイーアカデミーが戸塚駅西口徒歩3分の場所に移転するみたい
 date: 2025-05-25
 category: 移転
-image: ./images/20250525-eigojuku.jpg
+image: /images/20250525-eigojuku.jpg
 author: 編集部
 tags:
   - 戸塚駅
@@ -15,7 +15,7 @@ related:
 
 戸塚駅西口から徒歩約3分の場所に、**体験型英語教室「アールイーアカデミー（Re ACADEMY）」** が移転オープンするそうです！
 
-<Img src="./images/20250525-eigojuku.jpg"
+<Img src="/images/20250525-eigojuku.jpg"
      alt="アールイーアカデミーポスター"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 

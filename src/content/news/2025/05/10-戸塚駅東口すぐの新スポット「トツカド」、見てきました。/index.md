@@ -3,7 +3,7 @@ title: 戸塚駅東口すぐの新スポット「トツカド」、見てきま�
 excerpt: 戸塚駅東口すぐの新スポット「トツカド」、見てきました。6月オープン予定の飲食ビル、けっこう目立ってます
 date: 2025-05-10T20:28:00.000Z
 category: 開店
-image: ./images/IMG_9812.jpg
+image: /images/IMG_9812.jpg
 author: 編集部
 tags:
   - '新店舗'
@@ -11,7 +11,7 @@ tags:
 ---
 戸塚駅の東口を出て、信号を渡ったすぐ先。  
 しばらく前から工事中だった場所に、なんだかオシャレな建物ができていました。
-<img src="./images/IMG_9812.jpg"
+<img src="/images/IMG_9812.jpg"
      alt="トツカド外観"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 名前は **「トツカド」**。  
@@ -31,7 +31,7 @@ tags:
 - 屋上には **ルーフガーデン** あり  
 - **オープン予定は2025年6月**
 
-<img src="./images/IMG_9813.jpg"
+<img src="/images/IMG_9813.jpg"
      alt="トツカドポスター"
      class="mx-auto w-full md:w-2/3 rounded-lg shadow-md mb-8" />
 ポスターを見る限り、テナントはまだ一部募集中のようで、何が入るのかはこれから。  
