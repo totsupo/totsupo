@@ -63,23 +63,33 @@ export function getAllNews(): NewsItem[] {
       const fileContents = fs.readFileSync(filePath, 'utf8')
       const { data, content } = matter(fileContents)
       
-      // Generate slug from path: year/month/day-title -> YYYYMMDD-title
-      const pathParts = relativePath.split(path.sep)
-      if (pathParts.length >= 3) {
-        const [year, month, articleDir] = pathParts
-        const slug = `${year}${month}${articleDir}`
-        
-        filenameToSlugCache.set(relativePath, slug)
-        slugToFilenameCache.set(slug, relativePath)
-        
-        return {
-          slug,
-          content,
-          ...(data as Omit<NewsItem, "slug" | "content">)
+      // Generate slug - prefer frontmatter slug if available
+      let slug: string
+      
+      if (data.slug && typeof data.slug === 'string' && /^[a-zA-Z0-9\-_]+$/.test(data.slug)) {
+        // Use frontmatter slug as-is (this preserves the English slugs)
+        slug = data.slug
+      } else {
+        // Fallback: Generate from directory path if no frontmatter slug
+        const pathParts = relativePath.split(path.sep)
+        if (pathParts.length >= 3) {
+          const [year, month, articleDir] = pathParts
+          // Extract just the title part after the day prefix
+          const titlePart = articleDir.replace(/^\d{2}-/, '')
+          slug = generateShortSlug(`${year}${month}${articleDir}`)
+        } else {
+          return null
         }
       }
       
-      return null
+      filenameToSlugCache.set(relativePath, slug)
+      slugToFilenameCache.set(slug, relativePath)
+      
+      return {
+        slug,
+        content,
+        ...(data as Omit<NewsItem, "slug" | "content">)
+      }
     })
     .filter((item): item is NewsItem => item !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
