@@ -1,6 +1,6 @@
 ---
 title: CMSテスト
-slug: new-cms-test
+slug: nodoka-sannohokora
 excerpt: CMSテスト
 date: 2025-06-10T15:31:00.000Z
 category: 街ネタ
