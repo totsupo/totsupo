@@ -51,7 +51,6 @@ const staticPages = [
 function getNewsArticles() {
   const newsDir = path.join(__dirname, '../src/content/news');
   const articles = [];
-  const usedSlugs = new Set();
   
   // Recursively find all index.md files
   function findIndexFiles(dir, basePath = '') {
@@ -71,15 +70,6 @@ function getNewsArticles() {
         let slug;
         if (data.slug && typeof data.slug === 'string' && /^[a-zA-Z0-9\-_]+$/.test(data.slug)) {
           slug = data.slug;
-          
-          // Check for slug collision and handle it
-          if (usedSlugs.has(slug)) {
-            console.warn(`Slug collision detected in sitemap: "${slug}" already exists. Adding date suffix.`);
-            // Add date suffix to make slug unique
-            const date = new Date(data.date);
-            const dateStr = date.toISOString().slice(0, 10).replace(/-/g, '');
-            slug = `${slug}-${dateStr}`;
-          }
         } else {
           // Generate from directory path using the same logic as useAllNews.ts
           const pathParts = basePath.split(path.sep);
@@ -92,8 +82,6 @@ function getNewsArticles() {
             slug = generateShortSlug(basePath);
           }
         }
-        
-        usedSlugs.add(slug);
         
         articles.push({
           url: `/article/${slug}`,
