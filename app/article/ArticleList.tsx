@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useMemo } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
-import NewsCard from "@/src/components/NewsCard"
-import type { NewsItem } from "@/src/types/news"
+import NewsCard from "../../src/components/NewsCard"
+import type { NewsItem } from "../../src/types/news"
 
 interface Props {
   allPosts: NewsItem[]

@@ -10,6 +10,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
+    "test:integration": "vitest run src/lib/__tests__/integration/",
+    "test:coverage": "vitest run --coverage",
     "lint": "biome lint ./src ./app",
     "format": "biome format --write ./src ./app",
     "generate:sitemap": "node scripts/generate-sitemap.js",
