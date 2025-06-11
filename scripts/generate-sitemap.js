@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import matter from 'gray-matter';
+import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +29,24 @@ const staticPages = [
   }
 ];
 
+// Helper function to generate a short, URL-safe slug
+function generateShortSlug(filename) {
+  // Extract date prefix if it exists (YYYYMMDD-)
+  const dateMatch = filename.match(/^(\d{8})-/);
+  const datePrefix = dateMatch ? dateMatch[1] : '';
+  
+  // Check if the filename is already short enough (e.g., from CMS with manual slug)
+  const titlePart = filename.replace(/^\d{8}-/, '');
+  if (titlePart.length <= 50 && /^[a-zA-Z0-9\-_]+$/.test(titlePart)) {
+    return filename; // Use as-is if it's already URL-safe and short
+  }
+  
+  // Create a hash of the full filename for uniqueness
+  const hash = crypto.createHash('md5').update(filename).digest('hex').substring(0, 8);
+  
+  return datePrefix ? `${datePrefix}-${hash}` : hash;
+}
+
 // 記事一覧を取得
 function getNewsArticles() {
   const newsDir = path.join(__dirname, '../src/content/news');
@@ -39,7 +58,17 @@ function getNewsArticles() {
       const filePath = path.join(newsDir, file);
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       const { data } = matter(fileContent);
-      const slug = file.replace(/\.md$/, '');
+      
+      // Generate slug - prefer frontmatter slug if available
+      const filenameWithoutExt = file.replace(/\.md$/, '');
+      let slug;
+      
+      // Use frontmatter slug if available and valid
+      if (data.slug && typeof data.slug === 'string' && /^[a-zA-Z0-9\-_]+$/.test(data.slug)) {
+        slug = data.slug;
+      } else {
+        slug = generateShortSlug(filenameWithoutExt);
+      }
       
       return {
         url: `/article/${slug}`,
