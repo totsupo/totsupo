@@ -46,6 +46,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
+    <head>
+      <meta name="google-site-verification" content="qyoHgx1N8m95f0mOYpfmwm9nLtiRRQehhf2imDB79d0" />
+    </head>
     <body className={`${inter.className} min-h-screen bg-gray-50`}>
     <Header />
     {children}
