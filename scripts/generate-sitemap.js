@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // サイトのベースURL
-const SITE_URL = 'https://totsupo.pages.dev';
+const SITE_URL = 'https://totsupo.com';
 
 // 静的ページの定義
 const staticPages = [

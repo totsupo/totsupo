@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: '戸塚ぽーたる - 横浜市戸塚区の魅力を発信するローカルメディア',
     description: '戸塚ぽーたるは横浜市戸塚区の最新記事、イベント情報、おすすめスポットなどを発信するローカルメディアです。',
-    url: 'https://totsupo.pages.dev',
+    url: 'https://totsupo.com',
     siteName: '戸塚ぽーたる',
     images: [
       {
-        url: 'https://totsupo.pages.dev/favicon.png',
+        url: 'https://totsupo.com/favicon.png',
         width: 1200,
         height: 630,
       },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: '戸塚ぽーたる - 横浜市戸塚区の魅力を発信するローカルメディア',
     description: '戸塚ぽーたるは横浜市戸塚区の最新記事、イベント情報、おすすめスポットなどを発信するローカルメディアです。',
     site: '@totsuka_portal',
-    images: ['https://totsupo.pages.dev/favicon.png'],
+    images: ['https://totsupo.com/favicon.png'],
   },
 }
 

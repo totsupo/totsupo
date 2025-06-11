@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://totsupo.pages.dev/sitemap.xml
+Sitemap: https://totsupo.com/sitemap.xml
 
 # Block admin pages
 Disallow: /admin/
