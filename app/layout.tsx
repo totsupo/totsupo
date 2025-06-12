@@ -10,8 +10,12 @@ export const metadata: Metadata = {
   title: '戸塚ぽーたる - 横浜市戸塚区の魅力を発信するローカルメディア',
   description: '戸塚ぽーたるは横浜市戸塚区の最新記事、イベント情報、おすすめスポットなどを発信するローカルメディアです。',
   icons: {
-    icon: '/favicon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/favicon.png', sizes: '512x512', type: 'image/png' },
+    ],
     apple: '/favicon.png',
+    shortcut: '/favicon.ico',
   },
   manifest: '/site.webmanifest',
   themeColor: '#2563eb',
@@ -44,10 +48,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "戸塚ぽーたる",
+    "url": "https://totsupo.com",
+    "logo": "https://totsupo.com/favicon.png",
+    "description": "横浜市戸塚区の魅力を発信するローカルメディア"
+  };
+
   return (
     <html lang="ja">
     <head>
       <meta name="google-site-verification" content="qyoHgx1N8m95f0mOYpfmwm9nLtiRRQehhf2imDB79d0" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </head>
     <body className={`${inter.className} min-h-screen bg-gray-50`}>
     <Header />

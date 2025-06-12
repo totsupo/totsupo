@@ -4,9 +4,15 @@
   "description": "横浜市戸塚区の魅力を発信するローカルメディア",
   "icons": [
     {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
       "src": "/favicon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "theme_color": "#2563eb",
