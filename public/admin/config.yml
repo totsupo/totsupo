@@ -47,19 +47,3 @@ collections:
           name: tag
           widget: string
       - { name: body,    label: 本文, widget: markdown }
-  
-  - name: categories
-    label: カテゴリ管理
-    folder: "src/content/categories"
-    format: "frontmatter"
-    create: true
-    identifier_field: name
-    slug: "{{slug}}"
-    summary: "{{name}}"
-    editor:
-      preview: false
-    fields:
-      - { name: name, label: カテゴリ名, widget: string }
-      - { name: slug, label: URL Slug, widget: string, pattern: ['^[a-zA-Z0-9\-_]+$', 'URLに使用可能な文字のみ'] }
-      - { name: description, label: 説明, widget: text, required: false }
-      - { name: order, label: 表示順, widget: number, default: 0, hint: "小さい数字ほど上位に表示" }
