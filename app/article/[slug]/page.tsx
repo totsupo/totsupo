@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
 import NewsCard from "@/src/components/NewsCard"
+import ArticleEmbed from "@/src/components/ArticleEmbed"
 import { getAllNews, getNewsBySlug } from "@/src/lib/useAllNews"
 import type { NewsItem } from "@/src/types/news"
 import { notFound } from "next/navigation"
@@ -131,8 +132,66 @@ export default function ArticleDetailPage({ params }: Props) {
 
         {/* Article Content */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <article className="prose lg:prose-lg">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+          <article className="prose lg:prose-lg max-w-none">
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]} 
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                p: ({ children, ...props }) => {
+                  // 段落内のテキストをチェック
+                  if (children && typeof children === 'object' && 'props' in children) {
+                    const href = children.props?.href
+                    
+                    // 内部記事リンクのパターンをチェック
+                    if (href && (href.includes('totsupo.com/article/') || href.includes('totsupo.pages.dev/article/'))) {
+                      const slugMatch = href.match(/\/article\/([^\/\?#]+)/)
+                      if (slugMatch) {
+                        const linkedArticle = allNews.find(a => a.slug === slugMatch[1])
+                        if (linkedArticle) {
+                          return (
+                            <div className="my-6 not-prose">
+                              <ArticleEmbed article={linkedArticle} />
+                            </div>
+                          )
+                        }
+                      }
+                    }
+                  }
+                  return <p {...props}>{children}</p>
+                },
+                a: ({ href, children, ...props }) => {
+                  if (!href) return null
+                  
+                  // 独立した行の記事リンクをチェック
+                  if (href.includes('totsupo.com/article/') || href.includes('totsupo.pages.dev/article/')) {
+                    const slugMatch = href.match(/\/article\/([^\/\?#]+)/)
+                    if (slugMatch && children === href) {
+                      const linkedArticle = allNews.find(a => a.slug === slugMatch[1])
+                      if (linkedArticle) {
+                        return (
+                          <div className="my-6 not-prose">
+                            <ArticleEmbed article={linkedArticle} />
+                          </div>
+                        )
+                      }
+                    }
+                  }
+                  
+                  // 通常のリンク
+                  return (
+                    <a 
+                      href={href} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 underline"
+                      {...props}
+                    >
+                      {children}
+                    </a>
+                  )
+                }
+              }}
+            >
               {news.content}
             </ReactMarkdown>
           </article>
