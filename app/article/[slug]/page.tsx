@@ -6,6 +6,7 @@ import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
 import NewsCard from "@/src/components/NewsCard"
 import LinkCard from "@/src/components/LinkCard"
+import EmbedCard from "@/src/components/EmbedCard"
 import { getAllNews, getNewsBySlug } from "@/src/lib/useAllNews"
 import type { NewsItem } from "@/src/types/news"
 import { notFound } from "next/navigation"
@@ -138,11 +139,34 @@ export default function ArticleDetailPage({ params }: Props) {
               rehypePlugins={[rehypeRaw]}
               components={{
                 a: ({ href, children, ...props }) => {
+                  if (!href) return null
+                  
                   // 内部記事リンクかチェック
-                  if (href && href.includes('totsupo.com/article/')) {
+                  if (href.includes('totsupo.com/article/')) {
                     return <LinkCard url={href} className="my-4" />
                   }
-                  // 外部リンクの場合
+                  
+                  // SNSや動画サービスのURL（独立した行に記載されている場合）
+                  const embedPatterns = [
+                    'instagram.com',
+                    'twitter.com',
+                    'x.com',
+                    'youtube.com',
+                    'youtu.be',
+                    'google.com/maps',
+                    'maps.app.goo.gl'
+                  ]
+                  
+                  // URLのみの行（前後に他のテキストがない）かチェック
+                  const isStandaloneUrl = children && 
+                    typeof children === 'string' && 
+                    children.trim() === href.trim()
+                  
+                  if (isStandaloneUrl && embedPatterns.some(pattern => href.includes(pattern))) {
+                    return <EmbedCard url={href} />
+                  }
+                  
+                  // 通常の外部リンク
                   return (
                     <a 
                       href={href} 

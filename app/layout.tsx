@@ -65,6 +65,8 @@ export default function RootLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+      <script async src="//www.instagram.com/embed.js"></script>
     </head>
     <body className={`${inter.className} min-h-screen bg-gray-50`}>
     <Header />
