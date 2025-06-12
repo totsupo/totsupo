@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
 import NewsCard from "@/src/components/NewsCard"
+import LinkCard from "@/src/components/LinkCard"
 import { getAllNews, getNewsBySlug } from "@/src/lib/useAllNews"
 import type { NewsItem } from "@/src/types/news"
 import { notFound } from "next/navigation"
@@ -132,7 +133,30 @@ export default function ArticleDetailPage({ params }: Props) {
         {/* Article Content */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <article className="prose lg:prose-lg">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]} 
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                a: ({ href, children, ...props }) => {
+                  // 内部記事リンクかチェック
+                  if (href && href.includes('totsupo.com/article/')) {
+                    return <LinkCard url={href} className="my-4" />
+                  }
+                  // 外部リンクの場合
+                  return (
+                    <a 
+                      href={href} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 underline"
+                      {...props}
+                    >
+                      {children}
+                    </a>
+                  )
+                }
+              }}
+            >
               {news.content}
             </ReactMarkdown>
           </article>
