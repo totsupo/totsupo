@@ -7,27 +7,21 @@ import crypto from 'crypto';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// サイトのベースURL
+// サイトのベースURL（完全修飾URL必須）
 const SITE_URL = 'https://totsupo.com';
 
-// 静的ページの定義
-const staticPages = [
-  {
-    url: '/',
-    changefreq: 'weekly',
-    priority: '1.0'
-  },
-  {
-    url: '/article',
-    changefreq: 'daily',
-    priority: '0.9'
-  },
-  {
-    url: '/contact',
-    changefreq: 'monthly',
-    priority: '0.5'
-  }
-];
+// XMLエスケープ処理
+function escapeXml(unsafe) {
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+    }
+  });
+}
 
 // Helper function to generate a short, URL-safe slug
 function generateShortSlug(filename) {
@@ -46,6 +40,19 @@ function generateShortSlug(filename) {
   
   return datePrefix ? `${datePrefix}-${hash}` : hash;
 }
+
+// 静的ページの定義（priorityとchangefreqは削除）
+const staticPages = [
+  {
+    url: '/'
+  },
+  {
+    url: '/article'
+  },
+  {
+    url: '/contact'
+  }
+];
 
 // 記事一覧を取得
 function getNewsArticles() {
@@ -70,29 +77,43 @@ function getNewsArticles() {
         slug = generateShortSlug(filenameWithoutExt);
       }
       
+      // ISO 8601形式でlastmodを設定（W3C Datetime形式）
+      const lastmod = new Date(data.date).toISOString();
+      
       return {
         url: `/article/${slug}`,
-        lastmod: new Date(data.date).toISOString().split('T')[0],
-        changefreq: 'monthly',
-        priority: '0.7'
+        lastmod: lastmod
       };
     })
     .sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod)); // 新しい記事順
 }
 
-// XMLサイトマップを生成
+// XMLサイトマップを生成（Google推奨形式）
 function generateSitemap() {
   const articles = getNewsArticles();
   const allPages = [...staticPages, ...articles];
   
+  // URLの総数チェック（50,000以下）
+  if (allPages.length > 50000) {
+    console.warn('⚠️ サイトマップのURL数が50,000を超えています。分割を検討してください。');
+  }
+  
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allPages.map(page => `  <url>
-    <loc>${SITE_URL}${page.url}</loc>
-    ${page.lastmod ? `<lastmod>${page.lastmod}</lastmod>` : ''}
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`).join('\n')}
+${allPages.map(page => {
+    // 完全修飾URLを生成
+    const fullUrl = `${SITE_URL}${page.url}`;
+    
+    let urlEntry = `  <url>\n    <loc>${escapeXml(fullUrl)}</loc>`;
+    
+    // lastmodは重要なコンテンツ変更時のみ含める
+    if (page.lastmod) {
+      urlEntry += `\n    <lastmod>${page.lastmod}</lastmod>`;
+    }
+    
+    urlEntry += '\n  </url>';
+    return urlEntry;
+  }).join('\n')}
 </urlset>`;
 
   return sitemap;
@@ -103,11 +124,18 @@ function saveSitemap() {
   const sitemap = generateSitemap();
   const outputPath = path.join(__dirname, '../public/sitemap.xml');
   
+  // ファイルサイズチェック（50MB以下）
+  const sizeInMB = Buffer.byteLength(sitemap, 'utf8') / 1024 / 1024;
+  if (sizeInMB > 50) {
+    console.warn(`⚠️ サイトマップのサイズが50MBを超えています（${sizeInMB.toFixed(2)}MB）。分割を検討してください。`);
+  }
+  
   fs.writeFileSync(outputPath, sitemap, 'utf-8');
   
   console.log('✅ サイトマップが生成されました:', outputPath);
   console.log(`📊 総ページ数: ${staticPages.length + getNewsArticles().length}`);
   console.log(`📰 記事数: ${getNewsArticles().length}`);
+  console.log(`📦 ファイルサイズ: ${sizeInMB.toFixed(2)}MB`);
 }
 
 // スクリプト実行

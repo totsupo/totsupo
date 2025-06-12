@@ -2,182 +2,119 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://totsupo.com/</loc>
-    
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://totsupo.com/article</loc>
-    
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://totsupo.com/contact</loc>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250611-nodokasannohokora</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-06-11T22:15:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250611-719327ab</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-06-11T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250611-e34ef996</loc>
-    <lastmod>2025-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-06-11T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250609-garden</loc>
-    <lastmod>2025-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-06-09T22:25:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/mister-donut-buffet</loc>
-    <lastmod>2025-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-06-04T21:54:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250602-a9f14d7c</loc>
-    <lastmod>2025-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://totsupo.com/article/20250602-6ca5eaa0</loc>
-    <lastmod>2025-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://totsupo.com/article/20250602-797a5a05</loc>
-    <lastmod>2025-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-06-02T23:43:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250602-ba2f2cd8</loc>
-    <lastmod>2025-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-06-02T23:31:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://totsupo.com/article/20250602-6ca5eaa0</loc>
+    <lastmod>2025-06-02T23:21:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://totsupo.com/article/20250602-797a5a05</loc>
+    <lastmod>2025-06-02T23:05:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250525-cbee4056</loc>
-    <lastmod>2025-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-25T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250524-5a7f2abe</loc>
-    <lastmod>2025-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-24T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250524-dentist</loc>
-    <lastmod>2025-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-24T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250523-e0378d00</loc>
-    <lastmod>2025-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-23T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250523-7c08f4a4</loc>
-    <lastmod>2025-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-23T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250522-3128950e</loc>
-    <lastmod>2025-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-22T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250522-8fb1faa4</loc>
-    <lastmod>2025-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-22T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250518-cb0f946b</loc>
-    <lastmod>2025-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-18T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250518-5506689b</loc>
-    <lastmod>2025-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-18T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250516-a14b3e4b</loc>
-    <lastmod>2025-05-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-16T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250516-45968b5b</loc>
-    <lastmod>2025-05-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-16T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250512-19652630</loc>
-    <lastmod>2025-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-12T21:22:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250512-92154598</loc>
-    <lastmod>2025-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-12T21:22:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250512-681f8828</loc>
-    <lastmod>2025-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://totsupo.com/article/20250510-4a678e64</loc>
-    <lastmod>2025-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://totsupo.com/article/20250510-d66b8b2a</loc>
-    <lastmod>2025-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-12T21:22:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250510-0dcdbf85</loc>
-    <lastmod>2025-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-10T21:22:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://totsupo.com/article/20250510-c8878004</loc>
-    <lastmod>2025-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-05-10T20:28:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://totsupo.com/article/20250510-d66b8b2a</loc>
+    <lastmod>2025-05-10T05:25:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://totsupo.com/article/20250510-4a678e64</loc>
+    <lastmod>2025-05-10T00:00:00.000Z</lastmod>
   </url>
 </urlset>
