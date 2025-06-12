@@ -10,9 +10,9 @@ export default function ArticleEmbed({ article, className = '' }: ArticleEmbedPr
   return (
     <Link href={`/article/${article.slug}`} className={`block ${className}`}>
       <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-white">
-        <div className="flex">
+        <div className="flex min-h-[8rem]">
           {article.image && (
-            <div className="flex-shrink-0 w-32 h-32 bg-gray-100">
+            <div className="flex-shrink-0 w-32 bg-gray-100">
               <img 
                 src={article.image} 
                 alt={article.title}
